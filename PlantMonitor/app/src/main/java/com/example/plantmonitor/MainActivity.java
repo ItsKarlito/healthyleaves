@@ -1,0 +1,85 @@
+package com.example.plantmonitor;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.plantmonitor.Database.DatabaseHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    //declaration of objects
+    protected ListView plantListView;
+    protected FloatingActionButton addPlantFloatingButton;
+    protected DatabaseHelper dbHelper = new DatabaseHelper(this);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //initializing objects
+        plantListView = findViewById(R.id.plantListView);
+        addPlantFloatingButton = findViewById(R.id.addPlantFloatingButton);
+
+        //calling function to load listView
+        loadListView();
+
+        //making items in course ListView clickable and sending intent
+        plantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                DatabaseHelper dbHelper = new DatabaseHelper(MainActivity.this);
+                List<PlantProfile> plantProfiles = dbHelper.getAllPlants();
+
+                String name = plantProfiles.get(position).getName();
+                String growth = plantProfiles.get(position).getGrowth();
+                String expo = plantProfiles.get(position).getLightExposure();
+                String temp = plantProfiles.get(position).getTemperature();
+                String interval = plantProfiles.get(position).getWaterInterval();
+
+                Intent intent = new Intent(MainActivity.this, PlantActivity.class);
+                intent.putExtra("plantName", name);
+                intent.putExtra("plantGrowth", growth);
+                intent.putExtra("plantExposure", expo);
+                intent.putExtra("plantTemp", temp);
+                intent.putExtra("plantInterval", interval);
+
+                startActivity(intent);
+            }
+        });
+
+        //opens fragment
+        addPlantFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertFragment dialog = new insertFragment();
+
+                dialog.show(getSupportFragmentManager(), "InsertFragment");
+            }
+        });
+    }
+
+    protected void loadListView() {
+        List<PlantProfile> plant = dbHelper.getAllPlants();
+        ArrayList<String> plantListText = new ArrayList<>();
+
+        for(int i=0; i<plant.size(); i++) {
+            String temp ="";
+
+            temp += plant.get(i).getName();
+
+           plantListText.add(temp);
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, plantListText);
+        plantListView.setAdapter(arrayAdapter);
+    }
+}
