@@ -52,7 +52,8 @@ public class insertFragment extends DialogFragment {
 
                 if(!(name.equals("") || growth.equals("") || expo.equals("") || temp.equals("") || interval.equals(""))) {
                     dbHelper.insertPlant(new PlantProfile(name, interval, expo, temp, growth));
-                    ((MainActivity)getActivity()).loadListView();
+                    //((MainActivity)getActivity()).loadListView();
+                    ((ListOfPlants)getActivity()).loadListView();
                     getDialog().dismiss();
                 }
             }
