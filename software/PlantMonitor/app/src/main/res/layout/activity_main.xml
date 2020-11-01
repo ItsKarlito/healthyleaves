@@ -27,4 +27,16 @@
         android:layout_marginBottom="35dp"
         android:clickable="true"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <Button
+        android:id="@+id/buttonGoToPlantDatabaseActivity"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginBottom="41dp"
+        android:text="Catalog" />
 </RelativeLayout>

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.plantmonitor.Database.DatabaseHelper;
+import com.example.plantmonitor.PlantDatabase.PlantDatabaseActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class ListOfPlants extends AppCompatActivity {
 
 
     protected ListView plantListView;
+    protected Button buttonGoToPlantDatabaseActivity;
     protected FloatingActionButton addPlantFloatingButton;
     protected DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -28,6 +31,9 @@ public class ListOfPlants extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        buttonGoToPlantDatabaseActivity = (Button) findViewById(R.id.buttonGoToPlantDatabaseActivity);
+        buttonGoToPlantDatabaseActivity.setOnClickListener((view) -> {goToPlantDatabaseActivity();});
 
         plantListView = findViewById(R.id.plantListView);
         addPlantFloatingButton = findViewById(R.id.addPlantFloatingButton);
@@ -67,6 +73,11 @@ public class ListOfPlants extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "InsertFragment");
             }
         });
+    }
+
+    private void goToPlantDatabaseActivity() {
+        Intent intent = new Intent(this, PlantDatabaseActivity.class);
+        startActivity(intent);
     }
 
     protected void loadListView() {
