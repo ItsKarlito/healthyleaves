@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "596994408398",
+    "firebase_url": "https://healthyleaves-a5549.firebaseio.com",
+    "project_id": "healthyleaves-a5549",
+    "storage_bucket": "healthyleaves-a5549.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596994408398:android:42e2377ec8b4363a8ff59f",
+        "android_client_info": {
+          "package_name": "com.example.plantmonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596994408398-83g8tgehk0koelvvbg8k4q52jrdpbtgp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.plantmonitor",
+            "certificate_hash": "2d4d86a73a8a78de370c4d4f9c486d89a4a37e4a"
+          }
+        },
+        {
+          "client_id": "596994408398-k2m375st7rtnnaqpl6stv5t8sucjgmcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQNNRKYOlhfl4px-Bd9Mh8B_CMuNXpKE8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596994408398-k2m375st7rtnnaqpl6stv5t8sucjgmcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
