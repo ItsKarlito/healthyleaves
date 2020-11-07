@@ -1,4 +1,4 @@
-package com.example.plantmonitor.PlantDatabase;
+package com.example.plantmonitor.PlantCatalog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,7 @@ import com.example.plantmonitor.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Random;
-
-public class AddPlantDatabaseActivity extends AppCompatActivity {
+public class AddPlantToCatalogActivity extends AppCompatActivity {
 
     private String TAG = "AddPlantDatabaseActivity";
 
@@ -76,7 +74,7 @@ public class AddPlantDatabaseActivity extends AppCompatActivity {
     }
 
     void goToPlantDatabaseActivity() {
-        Intent intent = new Intent(this, PlantDatabaseActivity.class);
+        Intent intent = new Intent(this, PlantCatalogActivity.class);
         startActivity(intent);
         //finish()
     }

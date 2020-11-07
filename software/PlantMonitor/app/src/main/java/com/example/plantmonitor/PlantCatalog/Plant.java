@@ -1,4 +1,4 @@
-package com.example.plantmonitor.PlantDatabase;
+package com.example.plantmonitor.PlantCatalog;
 
 public class Plant {
     public String plantName = "";
