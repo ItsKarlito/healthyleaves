@@ -1,4 +1,4 @@
-package com.example.plantmonitor.PlantDatabase;
+package com.example.plantmonitor.PlantCatalog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plantmonitor.R;
+import com.example.plantmonitor.RecyclerView.MyAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class PlantDatabaseActivity extends AppCompatActivity {
+public class PlantCatalogActivity extends AppCompatActivity {
 
     private String TAG = "PlantDatabaseActivity";
 
@@ -83,7 +84,7 @@ public class PlantDatabaseActivity extends AppCompatActivity {
     }
 
     void goToAddPlantDatabaseActivity() {
-        Intent intent = new Intent(this, AddPlantDatabaseActivity.class);
+        Intent intent = new Intent(this, AddPlantToCatalogActivity.class);
         startActivity(intent);
     }
 }

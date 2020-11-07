@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.plantmonitor.Database.DatabaseHelper;
-import com.example.plantmonitor.PlantDatabase.PlantDatabaseActivity;
+import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class ListOfPlants extends AppCompatActivity {
     }
 
     private void goToPlantDatabaseActivity() {
-        Intent intent = new Intent(this, PlantDatabaseActivity.class);
+        Intent intent = new Intent(this, PlantCatalogActivity.class);
         startActivity(intent);
     }
 

@@ -1,4 +1,4 @@
-package com.example.plantmonitor.PlantDatabase;
+package com.example.plantmonitor.RecyclerView;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.R;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<com.example.plantmonitor.PlantDatabase.MyAdapter.MyViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private String TAG = "MyAdapter";
 
