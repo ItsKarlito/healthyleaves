@@ -1,15 +1,19 @@
-package com.example.plantmonitor.RecyclerView;
+package com.example.plantmonitor.ViewHelper;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plantmonitor.PlantCatalog.EditPlantCatalogActivity;
 import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.R;
 
@@ -45,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.textViewPlantIdealMoisture.setText("Ideal Moisture: " + Integer.toString(plant.getPlantIdealMoisture()) + "%");
             holder.textViewPlantIdealTemperature.setText("Ideal Temperature: " + Integer.toString(plant.getPlantIdealTemperature()) + "*C");
             holder.textViewPlantDescription.setText(plant.getPlantDescription());
+            holder.buttonEditPlantCatalog.setOnClickListener((view) -> {goToEditPlantCatalogActivity(view, plant.getPlantName());});
         }
         Log.d(TAG, "onBindViewHolder");
     }
@@ -61,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView textViewPlantIdealLight;
         TextView textViewPlantIdealMoisture;
         TextView textViewPlantIdealTemperature;
+        Button buttonEditPlantCatalog = null;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +75,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             textViewPlantIdealLight = itemView.findViewById(R.id.textViewPlantIdealLight);
             textViewPlantIdealMoisture = itemView.findViewById(R.id.textViewPlantIdealMoisture);
             textViewPlantIdealTemperature = itemView.findViewById(R.id.textViewPlantIdealTemperature);
+            buttonEditPlantCatalog = itemView.findViewById(R.id.buttonEditPlantCatalog);
         }
+    }
+
+    void goToEditPlantCatalogActivity(View view, String plantName) {
+        Intent intent = new Intent(context, EditPlantCatalogActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putString("plantName", plantName);
+        intent.putExtras(bundle);
+        view.getContext().startActivity(intent);
     }
 }

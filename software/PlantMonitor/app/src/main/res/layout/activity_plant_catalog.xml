@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.274" />
 
     <Button
-        android:id="@+id/buttonAddPlantDatabase"
+        android:id="@+id/buttonAddPlantCatalog"
         android:layout_width="328dp"
         android:layout_height="43dp"
         android:text="Add Plant"

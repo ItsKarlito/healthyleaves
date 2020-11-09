@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plantmonitor.R;
-import com.example.plantmonitor.RecyclerView.MyAdapter;
+import com.example.plantmonitor.ViewHelper.MyAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +26,7 @@ public class PlantCatalogActivity extends AppCompatActivity {
 
     private String TAG = "PlantDatabaseActivity";
 
-    Button buttonAddPlantDatabase = null;
+    Button buttonAddPlantCatalog = null;
     RecyclerView recyclerView;
     MyAdapter myAdapter;
 
@@ -38,16 +38,15 @@ public class PlantCatalogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plant_database);
+        setContentView(R.layout.activity_plant_catalog);
 
         recyclerView = findViewById(R.id.recyclerView);
-        buttonAddPlantDatabase = (Button) findViewById(R.id.buttonAddPlantDatabase);
-        buttonAddPlantDatabase.setOnClickListener((view) -> {goToAddPlantDatabaseActivity();});
+        buttonAddPlantCatalog = (Button) findViewById(R.id.buttonAddPlantCatalog);
+
+        populateRecyclerView();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    void populateRecyclerView() {
 
         database = FirebaseDatabase.getInstance();
         databasePlants = database.getReference("Plants");
@@ -67,6 +66,10 @@ public class PlantCatalogActivity extends AppCompatActivity {
                 //int plantIdealMoisture = Integer.parseInt(dataSnapshot.child("plantIdealMoisture").getValue().toString());
                 //int plantIdealTemperature = Integer.parseInt(dataSnapshot.child("plantIdealTemperature").getValue().toString());
                 //String plantDescription = dataSnapshot.child("plantDescription").getValue().toString();
+
+                myAdapter = new MyAdapter(getApplicationContext(), plantArray);
+                recyclerView.setAdapter(myAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
 
             @Override
@@ -77,14 +80,10 @@ public class PlantCatalogActivity extends AppCompatActivity {
 
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecor);
-
-        myAdapter = new MyAdapter(this, plantArray);
-        recyclerView.setAdapter(myAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    void goToAddPlantDatabaseActivity() {
-        Intent intent = new Intent(this, AddPlantToCatalogActivity.class);
+    void goToAddPlantCatalogActivity() {
+        Intent intent = new Intent(this, AddPlantCatalogActivity.class);
         startActivity(intent);
     }
 }

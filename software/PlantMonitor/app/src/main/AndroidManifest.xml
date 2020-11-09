@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantMonitor">
-        <activity android:name=".UserPlants.AddUserPlantActivity"></activity>
+        <activity android:name=".PlantCatalog.EditPlantCatalogActivity"></activity>
+        <activity android:name=".UserPlants.AddUserPlantActivity" />
         <activity android:name=".UserPlants.PlantMoistureDetailsActivity" />
         <activity android:name=".UserPlants.PlantTemperatureDetailsActivity" />
         <activity android:name=".UserPlants.PlantSettingsActivity" />
@@ -21,7 +22,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.PlantMonitor.NoActionBar" />
         <activity android:name=".PlantCatalog.PlantCatalogActivity" />
-        <activity android:name=".PlantCatalog.AddPlantToCatalogActivity" />
+        <activity android:name=".PlantCatalog.AddPlantCatalogActivity" />
         <activity android:name=".PlantActivity" />
         <activity android:name=".ListOfPlants" />
         <activity android:name=".Settings.ProfileActivity" />
