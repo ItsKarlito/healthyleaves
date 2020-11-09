@@ -23,17 +23,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.041" />
 
-    <EditText
-        android:id="@+id/editTextUserID"
+    <TextView
+        android:id="@+id/textViewUserID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="userID"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="userID"
+        android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewAddUserPlantsActivityTitle"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/textViewAddUserPlantsActivityTitle"
         app:layout_constraintTop_toBottomOf="@+id/textViewAddUserPlantsActivityTitle"
         app:layout_constraintVertical_bias="0.038" />
@@ -47,90 +48,91 @@
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextUserID"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextUserID"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUserID"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewUserID"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/textViewUserID"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserID"
+        app:layout_constraintVertical_bias="0.033" />
 
-    <EditText
-        android:id="@+id/editTextPlantName"
+    <TextView
+        android:id="@+id/textViewPlantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:ems="10"
-        android:hint="Plant Name"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="plantName"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserPlantName"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintVertical_bias="0.035" />
 
-    <EditText
-        android:id="@+id/editTextPlantIdealLight"
+    <TextView
+        android:id="@+id/textViewPlantIdealLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:ems="10"
-        android:hint="Plant Ideal Light"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="plantIdealLight"
+        android:textSize="20sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantName"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantName"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantName"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextPlantIdealMoisture"
+    <TextView
+        android:id="@+id/textViewPlantIdealMoisture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Plant Ideal Moisture"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="plantIdealMoisture"
+        android:textSize="20sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantIdealLight"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantIdealLight"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantIdealLight"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantIdealLight"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantIdealLight"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantIdealLight"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextPlantIdealTemperature"
+    <TextView
+        android:id="@+id/textViewPlantIdealTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Plant Ideal Temperature"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="plantIdealTemperature"
+        android:textSize="20sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantIdealMoisture"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantIdealMoisture"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantIdealMoisture"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantIdealMoisture"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantIdealMoisture"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantIdealMoisture"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextPlantDescription"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textViewPlantDescription"
+        android:layout_width="183dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:ems="10"
-        android:hint="Plant Description"
-        android:inputType="none"
-        android:text=""
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="plantDescription"
+        android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantIdealTemperature"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantIdealTemperature"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantIdealTemperature"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantIdealTemperature"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantIdealTemperature"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantIdealTemperature"
+        app:layout_constraintVertical_bias="0.027" />
 
     <Button
         android:id="@+id/buttonAddUserPlant"
@@ -140,11 +142,11 @@
         android:layout_marginLeft="120dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantDescription"
+        app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantDescription"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantDescription"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantDescription"
+        app:layout_constraintVertical_bias="0.142" />
 
     <Button
         android:id="@+id/buttonCancelPlantDatabase"
@@ -153,10 +155,10 @@
         android:backgroundTint="@android:color/holo_red_light"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPlantDescription"
+        app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPlantDescription"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPlantDescription"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantDescription"
+        app:layout_constraintVertical_bias="0.142" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

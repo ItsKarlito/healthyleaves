@@ -12,27 +12,27 @@ import com.example.plantmonitor.UserPlants.UserPlantsListActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button button;
-    Button button2;
+    Button buttonGoToUserPlantsListActivity;
+    Button buttonGoToPlantCatalogActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener((view) -> {goToUserPlantsListActivity();});
-        button2 = (Button) findViewById(R.id.button);
-        button2.setOnClickListener((view) -> {goToPlantCatalogActivity();});
-    }
-
-    void goToPlantCatalogActivity() {
-        Intent intent = new Intent(this, PlantCatalogActivity.class);
-        startActivity(intent);
+        buttonGoToUserPlantsListActivity = (Button) findViewById(R.id.buttonGoToUserPlantsListActivity);
+        buttonGoToUserPlantsListActivity.setOnClickListener((view) -> {goToUserPlantsListActivity();});
+        buttonGoToPlantCatalogActivity = (Button) findViewById(R.id.buttonGoToPlantCatalogActivity);
+        buttonGoToPlantCatalogActivity.setOnClickListener((view) -> {goToPlantCatalogActivity();});
     }
 
     void goToUserPlantsListActivity() {
         Intent intent = new Intent(this, UserPlantsListActivity.class);
+        startActivity(intent);
+    }
+
+    void goToPlantCatalogActivity() {
+        Intent intent = new Intent(this, PlantCatalogActivity.class);
         startActivity(intent);
     }
 }
