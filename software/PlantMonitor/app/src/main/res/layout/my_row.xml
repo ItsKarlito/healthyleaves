@@ -101,7 +101,7 @@
                 app:layout_constraintVertical_bias="0.3" />
 
             <Button
-                android:id="@+id/buttonEditPlant"
+                android:id="@+id/buttonEditPlantCatalog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

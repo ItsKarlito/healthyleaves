@@ -14,9 +14,9 @@ import com.example.plantmonitor.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddPlantToCatalogActivity extends AppCompatActivity {
+public class AddPlantCatalogActivity extends AppCompatActivity {
 
-    private String TAG = "AddPlantDatabaseActivity";
+    private String TAG = "AddPlantCatalogActivity";
 
     private DatabaseReference databasePlants;
 
@@ -32,7 +32,7 @@ public class AddPlantToCatalogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_plant_database);
+        setContentView(R.layout.activity_add_plant_catalog);
 
         databasePlants = FirebaseDatabase.getInstance().getReference("Plants");
 
