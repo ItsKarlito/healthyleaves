@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plantmonitor.R;
-import com.example.plantmonitor.ViewHelper.MyAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +41,7 @@ public class PlantCatalogActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         buttonAddPlantCatalog = (Button) findViewById(R.id.buttonAddPlantCatalog);
+        buttonAddPlantCatalog.setOnClickListener((view) -> {goToAddPlantCatalogActivity();});
 
         populateRecyclerView();
     }

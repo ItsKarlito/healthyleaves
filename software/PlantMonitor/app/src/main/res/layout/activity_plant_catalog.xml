@@ -13,7 +13,7 @@
         android:layout_height="45dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="Plant Database"
+        android:text="Plant Catalog"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
