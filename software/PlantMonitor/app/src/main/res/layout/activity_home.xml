@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".General.HomeActivity">
 
     <TextView
@@ -19,7 +20,7 @@
         app:layout_constraintVertical_bias="0.178" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonGoToUserPlantsListActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UserPlantListActivity.java"
@@ -30,14 +31,14 @@
         app:layout_constraintVertical_bias="0.304" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonGoToPlantCatalogActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PlantCatalogActivity.java"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGoToUserPlantsListActivity"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
