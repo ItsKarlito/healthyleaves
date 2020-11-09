@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.plantmonitor.General.HomeActivity;
 import com.example.plantmonitor.ListOfPlants;
 import com.example.plantmonitor.MainActivity;
 import com.example.plantmonitor.R;
@@ -54,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
-        Intent intent = new Intent(ProfileActivity.this, ListOfPlants.class);
+        Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
         startActivity(intent);
     }
 

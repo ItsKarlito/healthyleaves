@@ -8,7 +8,7 @@
     tools:context=".PlantCatalog.EditPlantCatalogActivity">
 
     <TextView
-        android:id="@+id/textViewAddPlantDatabaseActivityTitle"
+        android:id="@+id/textViewEditPlantDatabaseActivityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
@@ -33,9 +33,9 @@
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewAddPlantDatabaseActivityTitle"
-        app:layout_constraintStart_toStartOf="@+id/textViewAddPlantDatabaseActivityTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAddPlantDatabaseActivityTitle"
+        app:layout_constraintEnd_toEndOf="@+id/textViewEditPlantDatabaseActivityTitle"
+        app:layout_constraintStart_toStartOf="@+id/textViewEditPlantDatabaseActivityTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditPlantDatabaseActivityTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
