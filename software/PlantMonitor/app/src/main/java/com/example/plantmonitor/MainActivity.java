@@ -72,6 +72,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void displayNotification(){
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setContentTitle("Hurray! It is working...")
+                        .setContentText("Your first notification...")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, mBuilder.build());
+    }
+
     private void createUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -118,11 +129,6 @@ public class MainActivity extends AppCompatActivity {
         if(firebaseAuth.getCurrentUser() != null){
             startProfileActivity();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
     }
 
     private void startProfileActivity(){
