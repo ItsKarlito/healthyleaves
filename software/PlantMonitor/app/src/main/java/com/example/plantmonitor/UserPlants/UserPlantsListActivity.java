@@ -12,5 +12,8 @@ public class UserPlantsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_plants_list);
+
+        getSupportActionBar().setTitle("User's Plant List");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
