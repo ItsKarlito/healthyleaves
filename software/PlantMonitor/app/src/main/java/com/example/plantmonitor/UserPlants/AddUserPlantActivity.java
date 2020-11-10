@@ -45,6 +45,9 @@ public class AddUserPlantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user_plant);
 
+        getSupportActionBar().setTitle("Pairing");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         databasePlants = FirebaseDatabase.getInstance().getReference("Plants");
         databaseOwnsA = FirebaseDatabase.getInstance().getReference("OwnsA");
 

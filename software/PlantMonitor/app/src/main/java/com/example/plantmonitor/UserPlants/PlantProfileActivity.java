@@ -12,5 +12,9 @@ public class PlantProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_profile);
+
+        getSupportActionBar().setTitle("Plant Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 }

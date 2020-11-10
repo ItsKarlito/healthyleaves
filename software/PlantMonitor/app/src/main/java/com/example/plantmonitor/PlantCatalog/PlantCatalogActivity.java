@@ -39,6 +39,9 @@ public class PlantCatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_catalog);
 
+        getSupportActionBar().setTitle("Plant Catalog");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = findViewById(R.id.recyclerView);
         buttonAddPlantCatalog = (Button) findViewById(R.id.buttonAddPlantCatalog);
         buttonAddPlantCatalog.setOnClickListener((view) -> {goToAddPlantCatalogActivity();});
