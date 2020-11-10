@@ -131,10 +131,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void startProfileActivity(){
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 
     private void userLogin(String email, String password){
