@@ -30,6 +30,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
     def firebase_version = '17.3.4'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
