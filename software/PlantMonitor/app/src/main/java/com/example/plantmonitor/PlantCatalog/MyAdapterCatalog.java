@@ -18,14 +18,14 @@ import com.example.plantmonitor.UserPlants.AddUserPlantActivity;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapterCatalog extends RecyclerView.Adapter<MyAdapterCatalog.MyViewHolder> {
 
-    private String TAG = "MyAdapter";
+    private String TAG = "MyAdapterCatalog";
 
     ArrayList<Plant> plantArray;
     Context context;
 
-    public MyAdapter(Context context, ArrayList<Plant> plantArray){
+    public MyAdapterCatalog(Context context, ArrayList<Plant> plantArray){
         this.context = context;
         this.plantArray = plantArray;
     }
@@ -34,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_row, parent, false);
+        View view = inflater.inflate(R.layout.my_row_plant, parent, false);
 
         return new MyViewHolder(view);
     }
