@@ -21,3 +21,5 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+.software/PlantMonitor/local.properties
