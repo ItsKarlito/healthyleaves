@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:text="Edit Plant from Database"
+        android:text="Edit Plant from Catalog"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
