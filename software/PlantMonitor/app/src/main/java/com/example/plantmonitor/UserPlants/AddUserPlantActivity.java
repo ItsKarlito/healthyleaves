@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
 import com.example.plantmonitor.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +29,8 @@ public class AddUserPlantActivity extends AppCompatActivity {
     private DatabaseReference databasePlants;
     private DatabaseReference databaseOwnsA;
 
-    String plantID = null;
+    String plantID = "";
+    String userID = "";
 
     TextView textViewUserID = null;
     EditText editTextUserPlantName = null;
@@ -79,14 +81,13 @@ public class AddUserPlantActivity extends AppCompatActivity {
             }
         });
 
-        textViewUserID.setText("2JH5J2K4_5JK3-2JK3H45");
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        textViewUserID.setText(userID);
 
         buttonAddUserPlant = (Button) findViewById(R.id.buttonAddUserPlant);
         buttonAddUserPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: fetch userID of logged in user
-                String userID = "2JH5J2K4_5JK3-2JK3H45";
                 String name = editTextUserPlantName.getText().toString();
 
                 OwnsA newUserPlant = new OwnsA(name, plantID, userID);
