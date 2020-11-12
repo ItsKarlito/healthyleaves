@@ -24,23 +24,24 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="323dp"
-        android:layout_height="415dp"
+        android:layout_width="328dp"
+        android:layout_height="412dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantDatabaseActivityTitle"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantDatabaseActivityTitle"
         app:layout_constraintTop_toBottomOf="@+id/textViewPlantDatabaseActivityTitle"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <Button
         android:id="@+id/buttonAddPlantCatalog"
-        android:layout_width="328dp"
-        android:layout_height="43dp"
+        android:layout_width="271dp"
+        android:layout_height="65dp"
         android:text="Add Plant"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.191" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,8 +24,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UserPlantsListActivity extends AppCompatActivity {
@@ -38,8 +40,10 @@ public class UserPlantsListActivity extends AppCompatActivity {
     MyAdapterUserPlants myAdapterUserPlants;
 
     private FirebaseDatabase database;
-    private DatabaseReference databaseOwnsA;
-    private DatabaseReference databasePlants;
+    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceOwnsA;
+    private DatabaseReference databaseReferencePlants;
+    ArrayList<String> userPlantKeyArray = new ArrayList<String>();
     ArrayList<OwnsA> ownsAArray = new ArrayList<OwnsA>();
     ArrayList<Plant> userPlantArray = new ArrayList<Plant>();
 
@@ -64,16 +68,16 @@ public class UserPlantsListActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        databaseOwnsA = database.getReference("OwnsA");
-        databaseOwnsA.addValueEventListener(new ValueEventListener() {
+        databaseReferenceOwnsA = database.getReference("OwnsA");
+        databaseReferenceOwnsA.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()) {
                     OwnsA ownsA = child.getValue(OwnsA.class);
-                    if (ownsA != null){
-                        if (ownsA.getUserID() == userID) {
-                            ownsAArray.add(ownsA);
-                        }
+                    String userPlantKey = child.getKey();
+                    if (ownsA.getUserID().equals(userID)) {
+                        userPlantKeyArray.add(userPlantKey);
+                        ownsAArray.add(ownsA);
                     }
                 }
             }
@@ -84,21 +88,22 @@ public class UserPlantsListActivity extends AppCompatActivity {
             }
         });
 
-        databasePlants = database.getReference("Plants");
-        databasePlants.addValueEventListener(new ValueEventListener() {
+        databaseReferencePlants = database.getReference("Plants");
+        databaseReferencePlants.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot child : dataSnapshot.getChildren()) {
                     Plant plant = child.getValue(Plant.class);
                     String plantKey = child.getKey();
-                    if (plant != null) {
-                        for (int i = 0; i < ownsAArray.size(); i++) {
-                            if (ownsAArray.get(i).getPlantID() == plantKey) {
-                                userPlantArray.add(plant);
-                            }
+                    for (int i = 0; i < ownsAArray.size(); i++) {
+                        if (ownsAArray.get(i).getPlantID().equals(plantKey)) {
+                            userPlantArray.add(plant);
                         }
                     }
                 }
+                myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
+                recyclerView.setAdapter(myAdapterUserPlants);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
 
             @Override
@@ -110,7 +115,7 @@ public class UserPlantsListActivity extends AppCompatActivity {
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecor);
 
-        myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), ownsAArray, userPlantArray);
+        myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
         recyclerView.setAdapter(myAdapterUserPlants);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }

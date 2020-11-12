@@ -31,6 +31,7 @@ public class AddUserPlantActivity extends AppCompatActivity {
 
     String plantID = "";
     String userID = "";
+    String userEmail = "";
 
     TextView textViewUserID = null;
     EditText editTextUserPlantName = null;
@@ -82,7 +83,8 @@ public class AddUserPlantActivity extends AppCompatActivity {
         });
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        textViewUserID.setText(userID);
+        userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        textViewUserID.setText(userEmail);
 
         buttonAddUserPlant = (Button) findViewById(R.id.buttonAddUserPlant);
         buttonAddUserPlant.setOnClickListener(new View.OnClickListener() {

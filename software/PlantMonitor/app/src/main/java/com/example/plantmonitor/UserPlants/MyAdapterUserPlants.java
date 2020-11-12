@@ -33,12 +33,14 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
     private FirebaseDatabase database;
     private DatabaseReference databasePlants;
 
+    ArrayList<String> userPlantKeyArray;
     ArrayList<OwnsA> ownsAArray;
     ArrayList<Plant> userPlantArray;
     Context context;
 
-    public MyAdapterUserPlants(Context context, ArrayList<OwnsA> ownsAArray, ArrayList<Plant> userPlantArray){
+    public MyAdapterUserPlants(Context context, ArrayList<String> userPlantKeyArray, ArrayList<OwnsA> ownsAArray, ArrayList<Plant> userPlantArray){
         this.context = context;
+        this.userPlantKeyArray = userPlantKeyArray;
         this.ownsAArray = ownsAArray;
         this.userPlantArray = userPlantArray;
     }
@@ -54,12 +56,13 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        String userPlantKey = userPlantKeyArray.get(position);
         OwnsA ownsA = ownsAArray.get(position);
         Plant plant = userPlantArray.get(position);
         if (plant != null) {
             holder.textViewUserPlantName.setText(ownsA.getName());
             holder.textViewUserPlantType.setText(plant.getPlantName());
-            holder.itemView.setOnClickListener((view) -> {goToPlantProfileActivity(view, ownsA, plant);});
+            holder.itemView.setOnClickListener((view) -> {goToPlantProfileActivity(view, userPlantKey, ownsA, plant);});
         }
         Log.d(TAG, "onBindViewHolder");
     }
@@ -81,13 +84,17 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
         }
     }
 
-    void goToPlantProfileActivity(View view, OwnsA ownsA, Plant plant) {
+    void goToPlantProfileActivity(View view, String userPlantKey, OwnsA ownsA, Plant plant) {
         Intent intent = new Intent(context, PlantProfileActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
+        bundle.putString("userPlantID", userPlantKey);
         bundle.putString("userPlantName", ownsA.getName());
-        //bundle.putString("userPlantID", ownsA.getKey());
         bundle.putString("plantID", ownsA.getPlantID());
+        bundle.putString("plantName", plant.getPlantName());
+        bundle.putInt("plantIdealLight", plant.getPlantIdealLight());
+        bundle.putInt("plantIdealMoisture", plant.getPlantIdealMoisture());
+        bundle.putInt("plantIdealTemperature", plant.getPlantIdealTemperature());
         intent.putExtras(bundle);
         view.getContext().startActivity(intent);
     }
