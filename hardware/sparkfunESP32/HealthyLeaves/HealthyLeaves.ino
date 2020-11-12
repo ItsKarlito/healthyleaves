@@ -1,5 +1,8 @@
 // HealthyLeaves - ELEC/COEN 390 Team Project
 
+// Defined constants
+#define DELAY 1000
+
 // Libraries
 #include <WiFi.h>
 #include <time.h>
@@ -37,7 +40,7 @@ float tmpCelsius = 0;
 
 // User data identification
 int id = 0;
-int userPlantId = 123;
+String userPlantId = "-ML5WnnH09bhO1KyTsyR";
 
 void setup()
 {
@@ -75,5 +78,5 @@ void loop()
   Serial.println("********************");
   Serial.println();
   id++;
-  delay(1000);
+  delay(DELAY);
 }
