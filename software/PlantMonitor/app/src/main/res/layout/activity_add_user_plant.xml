@@ -31,7 +31,7 @@
         android:gravity="center"
         android:text="userID"
         android:textSize="20sp"
-        android:textStyle="italic"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewAddUserPlantsActivityTitle"
         app:layout_constraintHorizontal_bias="0.505"

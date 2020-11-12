@@ -3,6 +3,7 @@ package com.example.plantmonitor.PlantCatalog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class PlantCatalogActivity extends AppCompatActivity {
 
     Button buttonAddPlantCatalog = null;
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
+    MyAdapterCatalog myAdapterCatalog;
 
     private FirebaseDatabase database;
     private DatabaseReference databasePlants;
@@ -43,6 +44,7 @@ public class PlantCatalogActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.recyclerView);
+
         buttonAddPlantCatalog = (Button) findViewById(R.id.buttonAddPlantCatalog);
         buttonAddPlantCatalog.setOnClickListener((view) -> {goToAddPlantCatalogActivity();});
 
@@ -70,8 +72,8 @@ public class PlantCatalogActivity extends AppCompatActivity {
                 //int plantIdealTemperature = Integer.parseInt(dataSnapshot.child("plantIdealTemperature").getValue().toString());
                 //String plantDescription = dataSnapshot.child("plantDescription").getValue().toString();
 
-                myAdapter = new MyAdapter(getApplicationContext(), plantArray);
-                recyclerView.setAdapter(myAdapter);
+                myAdapterCatalog = new MyAdapterCatalog(getApplicationContext(), plantArray);
+                recyclerView.setAdapter(myAdapterCatalog);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
 
