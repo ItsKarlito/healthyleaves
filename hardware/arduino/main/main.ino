@@ -18,4 +18,6 @@ void setup()
 void loop()
 {
   moistureData = getMoisture();
+  Serial.println(moistureData);
+  delay(100);
 }

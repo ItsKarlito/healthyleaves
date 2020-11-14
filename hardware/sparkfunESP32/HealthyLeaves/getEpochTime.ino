@@ -1,8 +1,10 @@
-// getEpochTime
+//function returns real time from previous timestamp
 
-int getEpochTime() {
+int getEpochTime()
+{
   struct tm timeInfo;
-  if (!getLocalTime(&timeInfo)) {
+  if (!getLocalTime(&timeInfo))
+  {
     return -1;
   }
   time_t timeSinceEpoch = mktime(&timeInfo);

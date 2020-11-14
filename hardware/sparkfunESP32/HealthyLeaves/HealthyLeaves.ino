@@ -1,66 +1,75 @@
-// HealthyLeaves - ELEC/COEN 390 Team Project
+/*
+HealthyLeaves - ELEC/COEN 390 Team Project
+Last modified: 2020-11-14
+Hardware code for the HealthyLeaves device.
+*/
 
-// Defined constants
-#define DELAY 1000
-
-// Libraries
+//libraries
 #include <WiFi.h>
 #include <time.h>
 #include <FirebaseESP32.h>
 
-// Firebase authentication
+//definitions
+#define SYNC 350000
+
+//Firebase authentication
 #define FIREBASE_HOST "https://healthyleaves-a5549.firebaseio.com/"
 #define FIREBASE_AUTH "BlLToB9zFk5KjOzP3HkGUeBjVcWOsTKe56QPySID"
+FirebaseData firebaseData;//define FirebaseESP32 data object
 
-// Define FirebaseESP32 data object
-FirebaseData firebaseData;
+//WiFi authentication
+#define WIFI_SSID "NatRouter"
+#define WIFI_PASSWORD "lamehorseislame"
 
-// WiFi authentication
-#define WIFI_SSID "BELL197"
-#define WIFI_PASSWORD "6527757A"
+//time configuration
+const char* ntpServer = "pool.ntp.org";//time server
+const long  gmtOffset_sec = 0;//correction for timezone
+const int   daylightOffset_sec = 0;//daylight offset
 
-// Time configuration
-const char* ntpServer = "pool.ntp.org";
-const long  gmtOffset_sec = 0;
-const int   daylightOffset_sec = 0;
+//sensors available
+enum Sensor {light, moisture, temperature};//list of sensors
 
-// Sensors available
-enum Sensor { light, moisture, temperature };
+//light sensor
+int lightPin = 36;//pin
+int lightRaw = 0;//raw data
+int lightRawMax = 0;//value when exposed to direct sunlight (100% light)
+int lightPercent = 0;//processed data
 
-// Light sensor
-int lightIntensity = 36;
-int lightIntensityRaw = 0;
-int lightIntensityRawMax = 0;
-int lightIntensityPercent = 0;
+//moisture sensor
+int moisturePin= 37;//pin
+int air = 2380;//value when exposed to air (0% moisture)
+int water = 1000;//value when exposed to water (100% moisture)
+int moistureRaw;//raw data
+int moisturePercent;//processed data
 
-// Temperature sensor
+//temperature sensor
 int tmp = 38;
 int tmpRaw = 0;
 float tmpCelsius = 0;
 
-// User data identification
+//user data identification
 int id = 0;
 String userPlantId = "-ML5WnnH09bhO1KyTsyR";
 
 void setup()
 {
-  // Initialize Serial Monitor
+  //initialize Serial Monitor
   Serial.begin(115200);
 
-  // Initialize WiFi
+  //initialize WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to Wi-Fi");
   while (WiFi.status() != WL_CONNECTED)
   {
     Serial.print(".");
-    delay(100);
+    delay(2000);
   }
   Serial.println();
   Serial.print("Connected with IP: ");
-  Serial.println(WiFi.localIP());
+  Serial.print(WiFi.localIP());
   Serial.println();
 
-  // Initialize Firebase
+  //initialize Firebase
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
   Firebase.reconnectWiFi(true);
   Firebase.setReadTimeout(firebaseData, 1000 * 60);
@@ -72,11 +81,12 @@ void setup()
 
 void loop()
 {
-  writeToDatabase(light, getLightIntensity());
+  writeToDatabase(light, getLight());
+  writeToDatabase(moisture, getMoisture());
   writeToDatabase(temperature, getTemperature());
 
   Serial.println("********************");
   Serial.println();
   id++;
-  delay(DELAY);
+  delay(SYNC);
 }
