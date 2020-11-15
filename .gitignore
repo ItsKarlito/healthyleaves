@@ -1,23 +1,37 @@
-# Temporary files
-*.000
-*.bak
-*.bck
-*.kicad_pcb-bak
-*.sch-bak
-*~
-_autosave-*
-*.tmp
-*-save.pro
-*-save.kicad_pcb
-fp-info-cache
-
-# Netlist files (exported from Eeschema)
-*.net
-
-# Autorouter files (exported from Pcbnew)
-*.dsn
-*.ses
-
-# Exported BOM files
-*.xml
-*.csv
+#built application files
+*.apk
+*.ap_
+*.aab
+                           
+# files for the dex VM
+*.dex
+                            
+# Java class files
+*.class
+                            
+# generated files
+bin/
+gen/
+                            
+# Local configuration file (sdk path, etc)
+local.properties
+                        
+# Windows thumbnail db
+Thumbs.db
+                
+# OSX files
+.DS_Store
+                            
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/
+.navigation
+captures/
+output.json 
+    
+#NDK
+obj/
+.externalNativeBuild
