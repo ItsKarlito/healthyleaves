@@ -16,4 +16,9 @@ public class UserPlantsListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("User's Plant List");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

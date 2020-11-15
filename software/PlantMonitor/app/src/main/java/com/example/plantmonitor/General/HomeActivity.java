@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.plantmonitor.MainActivity;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
 import com.example.plantmonitor.R;
+import com.example.plantmonitor.UserPlants.PlantTemperatureDetailsActivity;
 import com.example.plantmonitor.UserPlants.UserPlantsListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
     void goToUserPlantsListActivity() {
         Intent intent = new Intent(this, UserPlantsListActivity.class);
+        //Intent intent = new Intent(this, PlantTemperatureDetailsActivity.class);
         startActivity(intent);
     }
 
