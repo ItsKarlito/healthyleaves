@@ -90,15 +90,17 @@ public class AddUserPlantActivity extends AppCompatActivity {
         buttonAddUserPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = editTextUserPlantName.getText().toString();
+                if (checkValidity()) {
+                    String name = editTextUserPlantName.getText().toString();
 
-                OwnsA newUserPlant = new OwnsA(name, plantID, userID);
-                String key = databaseOwnsA.push().getKey();
-                databaseOwnsA.child(key).setValue(newUserPlant);
+                    OwnsA newUserPlant = new OwnsA(name, plantID, userID);
+                    String key = databaseOwnsA.push().getKey();
+                    databaseOwnsA.child(key).setValue(newUserPlant);
 
-                Log.d(TAG, newUserPlant.toString());
-                Toast.makeText(getApplicationContext(), "succesful user plant entry", Toast.LENGTH_SHORT).show();
-                goToUserPlantListActivity();
+                    Log.d(TAG, newUserPlant.toString());
+                    Toast.makeText(getApplicationContext(), "succesful user plant entry", Toast.LENGTH_SHORT).show();
+                    goToUserPlantListActivity();
+                }
             }
         });
 
@@ -116,5 +118,14 @@ public class AddUserPlantActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UserPlantsListActivity.class);
         startActivity(intent);
         //finish()
+    }
+
+    private boolean checkValidity() {
+        //check for empty fields
+        if(editTextUserPlantName.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "you must baptise your plant", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }
