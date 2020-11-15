@@ -1,11 +1,11 @@
 package com.example.plantmonitor.PlantCatalog;
 
 public class Plant {
-    public String plantName = "";
-    public int plantIdealLight = 0;
-    public int plantIdealMoisture = 0;
-    public int plantIdealTemperature = 0;
-    public String plantDescription = "";
+    private String plantName;
+    private int plantIdealLight;
+    private int plantIdealMoisture;
+    private int plantIdealTemperature;
+    private String plantDescription;
 
     public Plant() {
     }

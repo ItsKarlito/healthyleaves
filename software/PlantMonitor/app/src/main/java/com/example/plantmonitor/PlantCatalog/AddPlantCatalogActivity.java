@@ -47,19 +47,21 @@ public class AddPlantCatalogActivity extends AppCompatActivity {
         buttonSavePlantDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String plantName = editTextPlantName.getText().toString();
-                int plantIdealLight = Integer.parseInt(editTextPlantIdealLight.getText().toString());
-                int plantIdealMoisture = Integer.parseInt(editTextPlantIdealMoisture.getText().toString());
-                int plantIdealTemperature = Integer.parseInt(editTextPlantIdealTemperature.getText().toString());
-                String plantDescription = editTextPlantDescription.getText().toString();
+                if(checkValidity()) {
+                    String plantName = editTextPlantName.getText().toString();
+                    int plantIdealLight = Integer.parseInt(editTextPlantIdealLight.getText().toString());
+                    int plantIdealMoisture = Integer.parseInt(editTextPlantIdealMoisture.getText().toString());
+                    int plantIdealTemperature = Integer.parseInt(editTextPlantIdealTemperature.getText().toString());
+                    String plantDescription = editTextPlantDescription.getText().toString();
 
-                Plant newPlant = new Plant(plantName,plantIdealLight,plantIdealMoisture,plantIdealTemperature,plantDescription);
-                String key = databasePlants.push().getKey();
-                databasePlants.child(key).setValue(newPlant);
+                    Plant newPlant = new Plant(plantName,plantIdealLight,plantIdealMoisture,plantIdealTemperature,plantDescription);
+                    String key = databasePlants.push().getKey();
+                    databasePlants.child(key).setValue(newPlant);
 
-                Log.d(TAG, newPlant.toString());
-                Toast.makeText(getApplicationContext(), "succesful plant entry", Toast.LENGTH_SHORT).show();
-                goToPlantDatabaseActivity();
+                    Log.d(TAG, newPlant.toString());
+                    Toast.makeText(getApplicationContext(), "succesful plant entry", Toast.LENGTH_SHORT).show();
+                    goToPlantDatabaseActivity();
+                }
             }
         });
 
@@ -78,4 +80,30 @@ public class AddPlantCatalogActivity extends AppCompatActivity {
         startActivity(intent);
         //finish()
     }
+
+    private boolean checkValidity() {
+        //check for empty fields
+        if(editTextPlantName.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "NAME WAS LEFT EMPTY", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(editTextPlantIdealLight.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "LIGHT WAS LEFT EMPTY", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(editTextPlantIdealMoisture.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "MOISTURE WAS LEFT EMPTY", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(editTextPlantIdealTemperature.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "TEMPERATURE WAS LEFT EMPTY", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(editTextPlantDescription.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "DESCRIPTION WAS LEFT EMPTY", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -1,9 +1,9 @@
 package com.example.plantmonitor.UserPlants;
 
 public class OwnsA {
-    public String name = "";
-    public String plantID = "";
-    public String userID = "";
+    private String name;
+    private String plantID;
+    private String userID;
 
     public OwnsA() {
     }
