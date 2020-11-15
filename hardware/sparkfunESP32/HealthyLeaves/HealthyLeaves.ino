@@ -10,7 +10,7 @@ Hardware code for the HealthyLeaves device.
 #include <FirebaseESP32.h>
 
 //definitions
-#define SYNC 350000
+#define SYNC 10000
 
 //Firebase authentication
 #define FIREBASE_HOST "https://healthyleaves-a5549.firebaseio.com/"
@@ -28,24 +28,6 @@ const int   daylightOffset_sec = 0;//daylight offset
 
 //sensors available
 enum Sensor {light, moisture, temperature};//list of sensors
-
-//light sensor
-int lightPin = 36;//pin
-int lightRaw = 0;//raw data
-int lightRawMax = 0;//value when exposed to direct sunlight (100% light)
-int lightPercent = 0;//processed data
-
-//moisture sensor
-int moisturePin= 37;//pin
-int air = 2380;//value when exposed to air (0% moisture)
-int water = 1000;//value when exposed to water (100% moisture)
-int moistureRaw;//raw data
-int moisturePercent;//processed data
-
-//temperature sensor
-int tmp = 38;
-int tmpRaw = 0;
-float tmpCelsius = 0;
 
 //user data identification
 int id = 0;
@@ -87,6 +69,6 @@ void loop()
 
   Serial.println("********************");
   Serial.println();
-  id++;
+  id++;//create a new reading
   delay(SYNC);
 }
