@@ -173,29 +173,57 @@ Light Sensor
 $Comp
 L power:GND #PWR02
 U 1 1 5FAD2823
-P 2950 1800
-F 0 "#PWR02" H 2950 1550 50  0001 C CNN
-F 1 "GND" H 2955 1627 50  0000 C CNN
-F 2 "" H 2950 1800 50  0001 C CNN
-F 3 "" H 2950 1800 50  0001 C CNN
-	1    2950 1800
+P 4575 1900
+F 0 "#PWR02" H 4575 1650 50  0001 C CNN
+F 1 "GND" H 4580 1727 50  0000 C CNN
+F 2 "" H 4575 1900 50  0001 C CNN
+F 3 "" H 4575 1900 50  0001 C CNN
+	1    4575 1900
 	1    0    0    -1  
 $EndComp
-Text GLabel 2950 1200 1    50   Input ~ 0
+Text GLabel 4575 1300 1    50   Input ~ 0
 3V3-R
-Text GLabel 3350 1500 2    50   Input ~ 0
+Text GLabel 4975 1600 2    50   Input ~ 0
 38
-Text Notes 2200 825  0    100  ~ 0
+Text Notes 3825 825  0    100  ~ 0
 Temperature Sensor
 $Comp
 L Sensor_Temperature:LM35-LP U1
 U 1 1 5FB449D9
-P 2950 1500
-F 0 "U1" H 2620 1546 50  0000 R CNN
-F 1 "TMP36" H 2620 1455 50  0000 R CNN
-F 2 "Package_TO_SOT_THT:TO-92L_Inline" H 3000 1250 50  0001 L CNN
-F 3 "http://www.ti.com/lit/ds/symlink/lm35.pdf" H 2950 1500 50  0001 C CNN
-	1    2950 1500
+P 4575 1600
+F 0 "U1" H 4245 1646 50  0000 R CNN
+F 1 "TMP36" H 4245 1555 50  0000 R CNN
+F 2 "Package_TO_SOT_THT:TO-92L_Inline" H 4625 1350 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm35.pdf" H 4575 1600 50  0001 C CNN
+	1    4575 1600
+	1    0    0    -1  
+$EndComp
+Text GLabel 2650 1425 0    50   Input ~ 0
+3V3-R
+$Comp
+L power:GND #PWR04
+U 1 1 5FB30986
+P 2650 1525
+F 0 "#PWR04" H 2650 1275 50  0001 C CNN
+F 1 "GND" H 2650 1350 50  0000 C CNN
+F 2 "" H 2650 1525 50  0001 C CNN
+F 3 "" H 2650 1525 50  0001 C CNN
+	1    2650 1525
+	1    0    0    -1  
+$EndComp
+Text GLabel 2650 1325 0    50   Input ~ 0
+37
+Text Notes 2175 825  0    100  ~ 0
+Moisture Sensor
+$Comp
+L Connector_Generic:Conn_01x03 J3
+U 1 1 5FB2A1DF
+P 2850 1425
+F 0 "J3" H 2850 1725 50  0000 C CNN
+F 1 "SEN0193" H 2850 1650 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_SM03B-GHS-TB_1x03-1MP_P1.25mm_Horizontal" H 2850 1425 50  0001 C CNN
+F 3 "~" H 2850 1425 50  0001 C CNN
+	1    2850 1425
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
