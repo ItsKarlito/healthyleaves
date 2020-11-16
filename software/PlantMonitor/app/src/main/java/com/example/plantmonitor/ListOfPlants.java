@@ -69,7 +69,6 @@ public class ListOfPlants extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insertFragment dialog = new insertFragment();
-
                 dialog.show(getSupportFragmentManager(), "InsertFragment");
             }
         });
@@ -93,5 +92,10 @@ public class ListOfPlants extends AppCompatActivity {
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, plantListText);
         plantListView.setAdapter(arrayAdapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

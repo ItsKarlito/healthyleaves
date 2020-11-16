@@ -1,7 +1,9 @@
 package com.example.plantmonitor.Settings;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.plantmonitor.General.HomeActivity;
@@ -15,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,9 +26,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    final String TAG = ProfileActivity.class.getSimpleName();
     public static final String NODE_USERS = "users";
     private FirebaseAuth firebaseAuth;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             String token = task.getResult().getToken();
                             saveToken(token);
-                            //displayNotification();
+                            subToTopic();
                         }
                     }
                 });
@@ -70,12 +73,25 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(ProfileActivity.this, "Token Saved!",
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(ProfileActivity.this, "Token Saved!",
+                            //Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-
+    private void subToTopic(){
+        FirebaseMessaging.getInstance().subscribeToTopic("temps")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+                        Log.d(TAG, msg);
+                        Toast.makeText(ProfileActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

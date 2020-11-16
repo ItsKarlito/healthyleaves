@@ -125,4 +125,9 @@ public class UserPlantsListActivity extends AppCompatActivity {
         startActivity(intent);
         Toast.makeText(getApplicationContext(), "Choose your plant's type", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }
