@@ -78,6 +78,7 @@ public class PlantProfileActivity extends AppCompatActivity {
     private void getValues(String tempUserPlantID) {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
+
         Query latestLight = databaseReference.child("Light").orderByChild("time");
         latestLight.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
