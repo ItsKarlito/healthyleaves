@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.plantmonitor.MainActivity;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
+    TextView textViewUsername;
     Button buttonGoToUserPlantsListActivity;
     Button buttonGoToPlantCatalogActivity;
     Button logout;
@@ -24,6 +26,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        textViewUsername = (TextView) findViewById(R.id.textViewUsername);
+        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String userName = userEmail.split("@")[0];
+        textViewUsername.setText(userName);
         buttonGoToUserPlantsListActivity = (Button) findViewById(R.id.buttonGoToUserPlantsListActivity);
         buttonGoToUserPlantsListActivity.setOnClickListener((view) -> {goToUserPlantsListActivity();});
         buttonGoToPlantCatalogActivity = (Button) findViewById(R.id.buttonGoToPlantCatalogActivity);
