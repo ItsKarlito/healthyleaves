@@ -35,6 +35,8 @@ public class PlantProfileActivity extends AppCompatActivity {
     private DatabaseReference databaseReferenceMoisture;
     private DatabaseReference databaseReferenceTemperature;
 
+    Bundle bundle;
+
     int currentLight = -1;
     int currentMoisture = -1;
     int currentTemperature = -1;
@@ -57,32 +59,19 @@ public class PlantProfileActivity extends AppCompatActivity {
     }
 
     private void showInformation() {
-        Bundle bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
         String tempUserPlantID = bundle.getString("userPlantID");
+
         getCurrentLight(tempUserPlantID);
+        getCurrentMoisture(tempUserPlantID);
+        getCurrentTemperature(tempUserPlantID);
+
         String tempUserPlantName = bundle.getString("userPlantName");
         String tempPlantID = bundle.getString("plantID");
         String tempPlantName = bundle.getString("plantName");
 
-        Integer tempPlantIdealLight = bundle.getInt("plantIdealLight");
-        Integer tempPlantIdealMoisture = bundle.getInt("plantIdealMoisture");
-        Integer tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
-
         textViewUserPlantName.setText(tempUserPlantName);
         textViewUserPlantType.setText(tempPlantName);
-
-        buttonGoToPlantLightDetailsActivity.setText(
-                "Current Light: " + Integer.toString(currentLight) +
-                        "\nIdeal Light: " + Integer.toString(tempPlantIdealLight)
-        );
-        buttonGoToPlantMoistureDetailsActivity.setText(
-                "Current Moisture: " + Integer.toString(currentMoisture) +
-                        "\nIdeal Moisture: " + Integer.toString(tempPlantIdealMoisture)
-        );
-        buttonGoToPlantTemperatureDetailsActivity.setText(
-                "Current Temperature: " + Integer.toString(currentTemperature) +
-                        "\nIdeal Temperature: " + Integer.toString(tempPlantIdealTemperature)
-        );
     }
 
     private void getCurrentLight(String tempUserPlantID) {
@@ -92,16 +81,16 @@ public class PlantProfileActivity extends AppCompatActivity {
         latestLight.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int mostRecentTime = 0;
                 for(DataSnapshot child : snapshot.getChildren()) {
-                    //currentLight = child.child("value").getValue();
                     Light light = child.getValue(Light.class);
-                    //if (light.getUserPlantId().equals(tempUserPlantID)) {
-                        if(light.getTime() > mostRecentTime) {
-                            currentLight = light.getValue();
-                        }
-                    //}
+                    currentLight = light.getValue();
                 }
+
+                Integer tempPlantIdealLight = bundle.getInt("plantIdealLight");
+                buttonGoToPlantLightDetailsActivity.setText(
+                        "Current Light: " + Integer.toString(currentLight) +
+                                "\nIdeal Light: " + Integer.toString(tempPlantIdealLight)
+                );
             }
 
             @Override
@@ -114,9 +103,52 @@ public class PlantProfileActivity extends AppCompatActivity {
     private void getCurrentMoisture(String tempUserPlantID) {
         database = FirebaseDatabase.getInstance();
         databaseReferenceMoisture = database.getReference("Moisture");
+        Query latestLight = databaseReferenceLight.orderByChild("time").limitToLast(1);
+        latestLight.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    Light light = child.getValue(Light.class);
+                    currentLight = light.getValue();
+                }
+
+                Integer tempPlantIdealMoisture = bundle.getInt("plantIdealMoisture");
+                buttonGoToPlantMoistureDetailsActivity.setText(
+                        "Current Moisture: " + Integer.toString(currentMoisture) +
+                                "\nIdeal Moisture: " + Integer.toString(tempPlantIdealMoisture)
+                );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Failed to load Light", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
     private void getCurrentTemperature(String tempUserPlantID) {
         database = FirebaseDatabase.getInstance();
         databaseReferenceTemperature = database.getReference("Temperature");
+        Query latestLight = databaseReferenceLight.orderByChild("time").limitToLast(1);
+        latestLight.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    Light light = child.getValue(Light.class);
+                    currentLight = light.getValue();
+                }
+
+                Integer tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
+                buttonGoToPlantTemperatureDetailsActivity.setText(
+                        "Current Temperature: " + Integer.toString(currentTemperature) +
+                                "\nIdeal Temperature: " + Integer.toString(tempPlantIdealTemperature)
+                );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Failed to load Light", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
