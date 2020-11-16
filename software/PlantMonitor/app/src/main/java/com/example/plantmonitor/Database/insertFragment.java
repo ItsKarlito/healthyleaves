@@ -1,4 +1,4 @@
-package com.example.plantmonitor;
+package com.example.plantmonitor.Database;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.plantmonitor.Database.DatabaseHelper;
+import com.example.plantmonitor.R;
 
 public class insertFragment extends DialogFragment {
 

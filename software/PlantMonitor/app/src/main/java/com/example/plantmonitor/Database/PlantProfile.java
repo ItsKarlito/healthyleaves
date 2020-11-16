@@ -1,4 +1,4 @@
-package com.example.plantmonitor;
+package com.example.plantmonitor.Database;
 
 import org.w3c.dom.NameList;
 

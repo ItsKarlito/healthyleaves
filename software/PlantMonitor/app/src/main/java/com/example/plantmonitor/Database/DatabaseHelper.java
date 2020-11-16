@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import com.example.plantmonitor.PlantProfile;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.plantmonitor;
+package com.example.plantmonitor.Database;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.plantmonitor.Database.DatabaseHelper;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
+import com.example.plantmonitor.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

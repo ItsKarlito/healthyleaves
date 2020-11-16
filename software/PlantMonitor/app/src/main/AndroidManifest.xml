@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/leaf_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/leaf_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantMonitor">
         <activity android:name=".UserPlants.PlantLightDetailsActivity"></activity>
@@ -32,8 +32,8 @@
             android:parentActivityName=".General.HomeActivity"/>
         <activity android:name=".PlantCatalog.AddPlantCatalogActivity"
             android:parentActivityName=".PlantCatalog.PlantCatalogActivity"/>
-        <activity android:name=".PlantActivity" />
-        <activity android:name=".ListOfPlants" />
+        <activity android:name=".Database.PlantActivity" />
+        <activity android:name=".Database.ListOfPlants" />
         <activity android:name=".Settings.ProfileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

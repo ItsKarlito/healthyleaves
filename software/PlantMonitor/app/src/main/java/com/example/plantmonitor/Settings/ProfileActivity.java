@@ -1,13 +1,11 @@
 package com.example.plantmonitor.Settings;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.plantmonitor.General.HomeActivity;
-import com.example.plantmonitor.ListOfPlants;
 import com.example.plantmonitor.MainActivity;
 import com.example.plantmonitor.R;
 import com.google.android.gms.tasks.OnCompleteListener;

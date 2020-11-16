@@ -1,10 +1,12 @@
-package com.example.plantmonitor;
+package com.example.plantmonitor.Database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.plantmonitor.R;
 
 public class PlantActivity extends AppCompatActivity {
 
