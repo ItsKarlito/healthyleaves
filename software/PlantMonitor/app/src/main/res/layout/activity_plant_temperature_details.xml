@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".UserPlants.PlantTemperatureDetailsActivity">
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/temperatureChart"
+        android:layout_width="match_parent"
+        android:layout_height="425dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></com.github.mikephil.charting.charts.LineChart>
+
+    <ListView
+        android:id="@+id/temperatureListView"
+        android:layout_width="410dp"
+        android:layout_height="293dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureChart" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
