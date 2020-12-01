@@ -3,12 +3,7 @@ package com.example.plantmonitor.Settings;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
-
-
-
 import androidx.annotation.RequiresApi;
-
-
 import com.example.plantmonitor.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -23,6 +18,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private int LT, HT, LM, HM, LL, HL;
     private String title, body;
+    boolean shouldNotify = false;
 
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -74,8 +70,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             /**
              * Display notification according to the received data
              */
-            NotificationHelper.displayNotification(getApplicationContext(), title, body);
-
+            if(shouldNotify == true)
+                NotificationHelper.displayNotification(getApplicationContext(), title, body);
+            this.shouldNotify = false;
         }
     }
 
@@ -87,11 +84,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void temperatureLowNotification(Context c, int i){
         this.title = c.getString(R.string.lowTempTitle);
         this.body = c.getString(R.string.lowTempBody) + i;
+        this.shouldNotify = true;
     }
 
     private void temperatureHighNotification(Context context, int i){
         this.title = context.getString(R.string.highTempTitle);
         this.title = context.getString(R.string.highTempBody) + i;
+        this.shouldNotify = true;
     }
 
     private void tempNotification(int val){
@@ -109,11 +108,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void lightLowNotification(Context c, int i){
         this.title = c.getString(R.string.lowLightTitle);
         this.body = c.getString(R.string.lowLightBody) + i;
+        this.shouldNotify = true;
     }
 
     private void lightHighNotification(Context context, int i){
         this.title = context.getString(R.string.highLightTitle);
         this.title = context.getString(R.string.highLightBody) + i;
+        this.shouldNotify = true;
     }
 
     private void lightNotification(int val){
@@ -131,11 +132,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void moistureHighNotification(Context c, int i) {
         this.title = c.getString(R.string.highMoistureTitle);
         this.body = c.getString(R.string.highMoistureBody) + i;
+        this.shouldNotify = true;
     }
 
     private void moistureLowNotification(Context c, int i) {
         this.title = c.getString(R.string.lowMoistureTitle);
         this.body = c.getString(R.string.lowMoistureBody) + i;
+        this.shouldNotify = true;
     }
 
     private void moistureNotification(int val) {
