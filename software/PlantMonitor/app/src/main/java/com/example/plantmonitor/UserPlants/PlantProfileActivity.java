@@ -81,7 +81,7 @@ public class PlantProfileActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
-        Query latestLight = databaseReference.child("Light").orderByChild("time");
+        Query latestLight = databaseReference.child("Light").orderByChild("time").limitToLast(5);
         latestLight.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -115,7 +115,7 @@ public class PlantProfileActivity extends AppCompatActivity {
         });
 
 
-        Query latestMoisture = databaseReference.child("Moisture").orderByChild("time");
+        Query latestMoisture = databaseReference.child("Moisture").orderByChild("time").limitToLast(5);
         latestMoisture.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,7 +148,7 @@ public class PlantProfileActivity extends AppCompatActivity {
             }
         });
 
-        Query latestTemperature = databaseReference.child("Temperature").orderByChild("time").limitToFirst(10);
+        Query latestTemperature = databaseReference.child("Temperature").orderByChild("time").limitToLast(5);
         latestTemperature.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
