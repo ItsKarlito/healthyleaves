@@ -49,6 +49,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
         //moistureGraphView.getViewport().setMinY(0.0);
         //moistureGraphView.getViewport().setMaxY(100.0);
         //moistureGraphView.getViewport().setYAxisBoundsManual(true);
+        moistureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.GREEN);
         moistureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Moisture levels %");
@@ -72,7 +73,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
                     dp[index] = new DataPoint(moisture.getTime(), moisture.getValue());
                     index++;
 
-                    moistureArrayList.add("Moisture Levels: " + moisture.getValue() + "%");
+                    moistureArrayList.add(index + ". Moisture Levels: " + moisture.getValue() + "%");
                 }
                 series.resetData(dp);
 
