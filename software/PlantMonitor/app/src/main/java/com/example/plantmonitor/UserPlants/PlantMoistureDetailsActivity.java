@@ -3,77 +3,82 @@ package com.example.plantmonitor.UserPlants;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.plantmonitor.R;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlantMoistureDetailsActivity extends AppCompatActivity {
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference myRef;
-    LineChart moistureChart;
-    LineDataSet lineDataSet = new LineDataSet(null, null);
-    ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
-    LineData lineData;
+    FirebaseDatabase database;
+    DatabaseReference reference;
+
+    GraphView moistureGraphView;
+    LineGraphSeries series;
+
     ListView moistureListView;
     ArrayList<String> moistureArrayList = new ArrayList<>();
-
-    int currentMoisture = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_moisture_details);
 
-        moistureChart = findViewById(R.id.moistureChart);
         moistureListView = findViewById(R.id.moistureListView);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getReference("Moisture");
-
-        retrieveData();
+        moistureGraphView = findViewById(R.id.moistureGraph);
+        series = new LineGraphSeries();
+        moistureGraphView.addSeries(series);
+        //moistureGraphView.getViewport().setMinY(0.0);
+        //moistureGraphView.getViewport().setMaxY(100.0);
+        //moistureGraphView.getViewport().setYAxisBoundsManual(true);
+        series.setDrawDataPoints(true);
+        series.setColor(Color.GREEN);
+        moistureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Moisture levels %");
+        moistureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Moisture");
     }
 
-    private void retrieveData() {
-        myRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<Entry> dataVals = new ArrayList<Entry>();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DataPoint[] dp = new DataPoint[(int) snapshot.getChildrenCount()];
+                int index = 0;
 
-                if(dataSnapshot.hasChildren()){
-                    int currentTime = -1;
-                    for(DataSnapshot  myDataSnapShot : dataSnapshot.getChildren()) {
-                        Moisture moisture = myDataSnapShot.getValue(Moisture.class);
-                        if(moisture.getTime() > currentTime) {
-                            currentMoisture = moisture.getValue();
-                        }
-                        dataVals.add(new Entry(moisture.getTime(), currentMoisture));
+                for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
+                    Moisture moisture = myDataSnapshot.getValue(Moisture.class);
+                    dp[index] = new DataPoint(moisture.getTime(), moisture.getValue());
+                    index++;
 
-                        moistureArrayList.add("Moisture Levels: " + currentMoisture + "%");
-                    }
-                    showChart(dataVals);
-
-                    ArrayAdapter moistureArrayAdapter = new ArrayAdapter(PlantMoistureDetailsActivity.this,
-                            android.R.layout.simple_list_item_1, moistureArrayList);
-                    moistureListView.setAdapter(moistureArrayAdapter);
+                    moistureArrayList.add("Moisture Levels: " + moisture.getValue() + "%");
                 }
-                else {
-                    moistureChart.clear();
-                    moistureChart.invalidate();
-                }
+                series.resetData(dp);
+
+                ArrayAdapter moistureArrayAdapter = new ArrayAdapter(PlantMoistureDetailsActivity.this,
+                        android.R.layout.simple_list_item_1, moistureArrayList);
+                moistureListView.setAdapter(moistureArrayAdapter);
             }
 
             @Override
@@ -81,16 +86,5 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void showChart(ArrayList<Entry> dataVals) {
-        lineDataSet.setValues(dataVals);
-        lineDataSet.setLabel("History of moisture levels");
-        iLineDataSets.clear();
-        iLineDataSets.add(lineDataSet);
-        lineData = new LineData(iLineDataSets);
-        moistureChart.clear();
-        moistureChart.setData(lineData);
-        moistureChart.invalidate();
     }
 }
