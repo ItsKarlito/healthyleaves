@@ -10,6 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationHelper {
 
+
     public static void displayNotification(Context context, String title, String body){
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, MainActivity.CHANNEL_ID)

@@ -1,5 +1,6 @@
 package com.example.plantmonitor.Settings;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.annotation.NonNull;
@@ -67,28 +70,43 @@ public class ProfileActivity extends AppCompatActivity {
 
         DatabaseReference dbUsers = FirebaseDatabase.getInstance().getReference(NODE_USERS);
         dbUsers.child(firebaseAuth.getCurrentUser().getUid())
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    //Toast.makeText(ProfileActivity.this, "Token Saved!",
-                            //Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+                .setValue(user).addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        //Toast.makeText(ProfileActivity.this, "Token Saved!",
+                                //Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void subToTopic(){
         FirebaseMessaging.getInstance().subscribeToTopic("temps")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                .addOnCompleteListener(task -> {
+                    String msg = getString(R.string.msg_subscribed);
+                    if (!task.isSuccessful()) {
+                        msg = getString(R.string.msg_subscribe_failed);
+                    }
+                    Log.d(TAG, msg);
+                    Toast.makeText(ProfileActivity.this, msg, Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void saveToServer(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = getString(R.string.msg_subscribed);
+                    public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            msg = getString(R.string.msg_subscribe_failed);
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
                         }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+                        String msg = getString(R.string.msg_token_fmt, token);
                         Log.d(TAG, msg);
-                        Toast.makeText(ProfileActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
