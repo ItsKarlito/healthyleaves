@@ -20,4 +20,22 @@
     <string name="msg_token_fmt"></string>
     <string name="msg_subscribed" />
     <string name="msg_subscribe_failed" />
+
+    <!-- Notification based information TEMPERATURE -->
+    <string name="lowTempTitle">Plant temperature warning.</string>
+    <string name="lowTempBody">The plant\'s temperature is too low! Last value: </string>
+    <string name="highTempTitle">Plant temperature warning.</string>
+    <string name="highTempBody">The plant\'s temperature is too high! Last value: </string>
+
+    <!-- Notification based information LIGHT -->
+    <string name="lowLightTitle">Plant light warning.</string>
+    <string name="lowLightBody">The plant\'s light is too low! Last value: </string>
+    <string name="highLightTitle">Plant light warning.</string>
+    <string name="highLightBody">The plant\'s light is too high! Last value: </string>
+
+    <!-- Notification based information MOISTURE -->
+    <string name="lowMoistureTitle">Plant moisture warning.</string>
+    <string name="lowMoistureBody">The plant\'s moisture is too low! Last value: </string>
+    <string name="highMoistureTitle">Plant moisture warning.</string>
+    <string name="highMoistureBody">The plant\'s moisture is too high! Last value: </string>
 </resources>
