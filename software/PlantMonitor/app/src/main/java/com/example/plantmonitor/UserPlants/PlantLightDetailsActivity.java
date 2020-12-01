@@ -49,7 +49,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
         //lightGraphView.getViewport().setYAxisBoundsManual(true);
         lightGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
-        series.setColor(Color.GREEN);
+        series.setColor(Color.WHITE);
         lightGraphView.getGridLabelRenderer().setVerticalAxisTitle("Light levels %");
         lightGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         database = FirebaseDatabase.getInstance();

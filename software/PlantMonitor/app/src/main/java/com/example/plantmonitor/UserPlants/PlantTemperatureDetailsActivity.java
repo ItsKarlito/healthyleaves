@@ -51,7 +51,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
         //temperatureGraphView.getViewport().setYAxisBoundsManual(true);
         temperatureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
-        series.setColor(Color.GREEN);
+        series.setColor(Color.WHITE);
         temperatureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Temperature levels %");
         temperatureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         database = FirebaseDatabase.getInstance();

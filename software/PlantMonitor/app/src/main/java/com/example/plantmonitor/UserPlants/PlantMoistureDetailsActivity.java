@@ -51,7 +51,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
         //moistureGraphView.getViewport().setYAxisBoundsManual(true);
         moistureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
-        series.setColor(Color.GREEN);
+        series.setColor(Color.WHITE);
         moistureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Moisture levels %");
         moistureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         database = FirebaseDatabase.getInstance();
