@@ -47,6 +47,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
         //lightGraphView.getViewport().setMinY(0.0);
         //lightGraphView.getViewport().setMaxY(100.0);
         //lightGraphView.getViewport().setYAxisBoundsManual(true);
+        lightGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.GREEN);
         lightGraphView.getGridLabelRenderer().setVerticalAxisTitle("Light levels %");
@@ -70,7 +71,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
                     dp[index] = new DataPoint(light.getTime(), light.getValue());
                     index++;
 
-                    lightArrayList.add("Light Levels: " + light.getValue() + "%");
+                    lightArrayList.add(index + ". Light Levels: " + light.getValue() + "%");
                 }
                 series.resetData(dp);
 

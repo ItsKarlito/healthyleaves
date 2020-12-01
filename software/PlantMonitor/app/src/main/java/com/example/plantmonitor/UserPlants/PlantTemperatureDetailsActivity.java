@@ -49,6 +49,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
         //temperatureGraphView.getViewport().setMinY(0.0);
         //temperatureGraphView.getViewport().setMaxY(100.0);
         //temperatureGraphView.getViewport().setYAxisBoundsManual(true);
+        temperatureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.GREEN);
         temperatureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Temperature levels %");
@@ -72,7 +73,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
                     dp[index] = new DataPoint(temperature.getTime(), temperature.getValue());
                     index++;
 
-                    temperatureArrayList.add("Temperature Levels: " + temperature.getValue() + "%");
+                    temperatureArrayList.add(index + ". Temperature Levels: " + temperature.getValue() + "%");
                 }
                 series.resetData(dp);
 
