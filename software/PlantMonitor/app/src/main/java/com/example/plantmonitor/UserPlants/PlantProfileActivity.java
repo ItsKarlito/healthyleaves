@@ -92,35 +92,11 @@ public class PlantProfileActivity extends AppCompatActivity {
         textViewUserPlantType.setText(tempPlantName);
         textViewUserPlantName.setOnClickListener((view) -> {goToUserPlantsListActivity();});
 
-        textViewPlantLightDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (PlantProfileActivity.this, PlantLightDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         tempPlantIdealLight = bundle.getInt("plantIdealLight");
         textViewPlantLightIdeal.setText("(ideal: " + tempPlantIdealLight + "%)");
 
-        textViewPlantMoistureDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (PlantProfileActivity.this, PlantMoistureDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         tempPlantIdealMoisture = bundle.getInt("plantIdealMoisture");
         textViewPlantMoistureIdeal.setText("(ideal: " + tempPlantIdealMoisture + "%)");
-
-        textViewPlantTemperatureDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (PlantProfileActivity.this, PlantTemperatureDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
         textViewPlantTemperatureIdeal.setText("(ideal: " + tempPlantIdealTemperature + "°C)");
@@ -153,6 +129,13 @@ public class PlantProfileActivity extends AppCompatActivity {
 
                 if(currentLight != -1) {
                     textViewPlantLightDetails.setText(currentLight + "%");
+                    textViewPlantLightDetails.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent (PlantProfileActivity.this, PlantLightDetailsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     if (currentLight < tempPlantIdealLight - 5) {
                         tempRecommendations = tempRecommendations + "move your plant to a more sunny location.\n";
@@ -187,6 +170,13 @@ public class PlantProfileActivity extends AppCompatActivity {
 
                 if (currentMoisture != -1) {
                     textViewPlantMoistureDetails.setText(currentMoisture + "%");
+                    textViewPlantMoistureDetails.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent (PlantProfileActivity.this, PlantMoistureDetailsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     if (currentMoisture < tempPlantIdealMoisture - 5) {
                         tempRecommendations = tempRecommendations + "water your plant more often.\n";
@@ -220,6 +210,13 @@ public class PlantProfileActivity extends AppCompatActivity {
 
                 if (currentTemperature != -1) {
                     textViewPlantTemperatureDetails.setText(currentTemperature + "°C");
+                    textViewPlantTemperatureDetails.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent (PlantProfileActivity.this, PlantTemperatureDetailsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     if (currentTemperature < tempPlantIdealTemperature - 5) {
                         tempRecommendations = tempRecommendations + "move your plant to a warmer environment.\n";
