@@ -33,8 +33,8 @@ public class AddUserPlantActivity extends AppCompatActivity {
     String userID = "";
     String userEmail = "";
 
-    TextView textViewUserID = null;
     EditText editTextUserPlantName = null;
+    EditText editTextDeviceId = null;
     TextView textViewPlantName = null;
     TextView textViewPlantIdealLight = null;
     TextView textViewPlantIdealMoisture = null;
@@ -48,14 +48,11 @@ public class AddUserPlantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user_plant);
 
-        getSupportActionBar().setTitle("Pairing");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         databasePlants = FirebaseDatabase.getInstance().getReference("Plants");
         databaseOwnsA = FirebaseDatabase.getInstance().getReference("OwnsA");
 
-        textViewUserID = (TextView) findViewById(R.id.textViewUserID);
         editTextUserPlantName = (EditText) findViewById(R.id.editTextUserPlantName);
+        editTextDeviceId= (EditText) findViewById(R.id.editTextDeviceId);
         textViewPlantName = (TextView) findViewById(R.id.textViewPlantName);
         textViewPlantIdealLight = (TextView) findViewById(R.id.textViewPlantIdealLight);
         textViewPlantIdealMoisture = (TextView) findViewById(R.id.textViewPlantIdealMoisture);
@@ -84,7 +81,6 @@ public class AddUserPlantActivity extends AppCompatActivity {
 
         userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        textViewUserID.setText(userEmail);
 
         buttonAddUserPlant = (Button) findViewById(R.id.buttonAddUserPlant);
         buttonAddUserPlant.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +88,9 @@ public class AddUserPlantActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkValidity()) {
                     String name = editTextUserPlantName.getText().toString();
+                    String deviceID = editTextDeviceId.getText().toString();
 
-                    OwnsA newUserPlant = new OwnsA(name, plantID, userID);
+                    OwnsA newUserPlant = new OwnsA(name, plantID, userID, deviceID);
                     String key = databaseOwnsA.push().getKey();
                     databaseOwnsA.child(key).setValue(newUserPlant);
 
@@ -109,7 +106,7 @@ public class AddUserPlantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "cancelled user plant entry", Toast.LENGTH_SHORT).show();
-                goToUserPlantListActivity();
+                goToPlantCatalogActivity();
             }
         });
     }
@@ -117,13 +114,21 @@ public class AddUserPlantActivity extends AppCompatActivity {
     void goToUserPlantListActivity() {
         Intent intent = new Intent(this, UserPlantsListActivity.class);
         startActivity(intent);
-        //finish()
+    }
+
+    void goToPlantCatalogActivity() {
+        Intent intent = new Intent(this, PlantCatalogActivity.class);
+        startActivity(intent);
     }
 
     private boolean checkValidity() {
         //check for empty fields
         if(editTextUserPlantName.getText().toString().matches("")) {
             Toast.makeText(getApplicationContext(), "you must baptise your plant", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(editTextDeviceId.getText().toString().matches("")) {
+            Toast.makeText(getApplicationContext(), "enter the code given with your Healthy Leaves device", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

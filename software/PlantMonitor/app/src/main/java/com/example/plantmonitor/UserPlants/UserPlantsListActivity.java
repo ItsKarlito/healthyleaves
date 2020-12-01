@@ -13,8 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.plantmonitor.General.HomeActivity;
 import com.example.plantmonitor.PlantCatalog.MyAdapterCatalog;
 import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
@@ -34,6 +36,7 @@ public class UserPlantsListActivity extends AppCompatActivity {
 
     private String TAG = "UserPlantsDatabaseActivity";
 
+    TextView textViewUserPlantsActivityTitle;
     Button buttonAddUserPlant = null;
 
     RecyclerView recyclerView;
@@ -52,10 +55,10 @@ public class UserPlantsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_plants_list);
 
-        getSupportActionBar().setTitle("User Plants List");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         recyclerView = findViewById(R.id.recyclerView);
+
+        textViewUserPlantsActivityTitle = (TextView) findViewById(R.id.textViewUserPlantsActivityTitle);
+        textViewUserPlantsActivityTitle.setOnClickListener((view) -> {goToHomeActivity();});
 
         buttonAddUserPlant = (Button) findViewById(R.id.buttonAddUserPlant);
         buttonAddUserPlant.setOnClickListener((view) -> {goToPlantCatalogActivity();});
@@ -78,6 +81,25 @@ public class UserPlantsListActivity extends AppCompatActivity {
                     if (ownsA.getUserID().equals(userID)) {
                         userPlantKeyArray.add(userPlantKey);
                         ownsAArray.add(ownsA);
+                        //testing ======================================================================================
+                        /*
+                        databaseReference = database.getReference();
+                        databaseReference.child("Plants").equalTo(ownsA.getPlantID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                                    Plant plant = child.getValue(Plant.class);
+                                    userPlantArray.add(plant);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(getApplicationContext(), "Failed to load Plants", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                         */
+                        //end of test ==================================================================================
                     }
                 }
             }
@@ -126,8 +148,8 @@ public class UserPlantsListActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Choose your plant's type", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    void goToHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }
