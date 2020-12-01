@@ -35,14 +35,24 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
 
     ArrayList<String> userPlantKeyArray;
     ArrayList<OwnsA> ownsAArray;
-    ArrayList<Plant> userPlantArray;
+    ArrayList<String> plantKeyArray = new ArrayList<String>();
+    ArrayList<Plant> userPlantArray = new ArrayList<Plant>();
     Context context;
 
-    public MyAdapterUserPlants(Context context, ArrayList<String> userPlantKeyArray, ArrayList<OwnsA> ownsAArray, ArrayList<Plant> userPlantArray){
+    public MyAdapterUserPlants(Context context, ArrayList<String> userPlantKeyArray, ArrayList<OwnsA> ownsAArray, ArrayList<String> plantKeyArray, ArrayList<Plant> userPlantArray){
         this.context = context;
         this.userPlantKeyArray = userPlantKeyArray;
         this.ownsAArray = ownsAArray;
-        this.userPlantArray = userPlantArray;
+
+        for (int i = 0; i < ownsAArray.size(); i++) {
+            for (int j = 0; j < userPlantArray.size(); j++) {
+                if (ownsAArray.get(i).getPlantID().equals(plantKeyArray.get(j))) {
+                    this.plantKeyArray.add(plantKeyArray.get(j));
+                    this.userPlantArray.add(userPlantArray.get(j));
+                    break;
+                }
+            }
+        }
     }
 
     @NonNull

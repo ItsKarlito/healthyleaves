@@ -48,6 +48,7 @@ public class UserPlantsListActivity extends AppCompatActivity {
     private DatabaseReference databaseReferencePlants;
     ArrayList<String> userPlantKeyArray = new ArrayList<String>();
     ArrayList<OwnsA> ownsAArray = new ArrayList<OwnsA>();
+    ArrayList<String> plantKeyArray = new ArrayList<String>();
     ArrayList<Plant> userPlantArray = new ArrayList<Plant>();
 
     @Override
@@ -81,25 +82,6 @@ public class UserPlantsListActivity extends AppCompatActivity {
                     if (ownsA.getUserID().equals(userID)) {
                         userPlantKeyArray.add(userPlantKey);
                         ownsAArray.add(ownsA);
-                        //testing ======================================================================================
-                        /*
-                        databaseReference = database.getReference();
-                        databaseReference.child("Plants").equalTo(ownsA.getPlantID()).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot child : dataSnapshot.getChildren()) {
-                                    Plant plant = child.getValue(Plant.class);
-                                    userPlantArray.add(plant);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-                                Toast.makeText(getApplicationContext(), "Failed to load Plants", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                         */
-                        //end of test ==================================================================================
                     }
                 }
             }
@@ -119,11 +101,12 @@ public class UserPlantsListActivity extends AppCompatActivity {
                     String plantKey = child.getKey();
                     for (int i = 0; i < ownsAArray.size(); i++) {
                         if (ownsAArray.get(i).getPlantID().equals(plantKey)) {
+                            plantKeyArray.add(plantKey);
                             userPlantArray.add(plant);
                         }
                     }
                 }
-                myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
+                myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, plantKeyArray, userPlantArray);
                 recyclerView.setAdapter(myAdapterUserPlants);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
@@ -136,10 +119,6 @@ public class UserPlantsListActivity extends AppCompatActivity {
 
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecor);
-
-        myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
-        recyclerView.setAdapter(myAdapterUserPlants);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     void goToPlantCatalogActivity() {
