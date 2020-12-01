@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.plantmonitor.MainActivity;
@@ -20,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     Button buttonGoToUserPlantsListActivity;
     Button buttonGoToPlantCatalogActivity;
     Button logout;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
         buttonGoToPlantCatalogActivity.setOnClickListener((view) -> {goToPlantCatalogActivity();});
         logout = (Button) findViewById(R.id.home_logout_button);
         logout.setOnClickListener((view) -> {userLogout();});
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setOnClickListener((view) -> {goToUserSettingsActivity();});
     }
 
     void goToUserPlantsListActivity() {
@@ -46,6 +50,11 @@ public class HomeActivity extends AppCompatActivity {
 
     void goToPlantCatalogActivity() {
         Intent intent = new Intent(this, PlantCatalogActivity.class);
+        startActivity(intent);
+    }
+
+    void goToUserSettingsActivity() {
+        Intent intent = new Intent(this, UserSettingsActivity.class);
         startActivity(intent);
     }
 

@@ -89,6 +89,7 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
         bundle.putString("userPlantID", userPlantKey);
+        bundle.putString("deviceID", ownsA.getDeviceID());
         bundle.putString("userPlantName", ownsA.getName());
         bundle.putString("plantID", ownsA.getPlantID());
         bundle.putString("plantName", plant.getPlantName());
