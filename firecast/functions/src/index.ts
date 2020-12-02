@@ -33,7 +33,6 @@ exports.getTemperature = functions.database.ref('/Temperature/{id}')
         console.log('New temperature value for plant: ', stringUserPlantId, ' with value ', stringValue, 'at time ', stringTime);
 
         const payload = {
-            topic: 'temps',
             data:{
                 type: "temperature",
                 time: stringTime,
@@ -41,8 +40,12 @@ exports.getTemperature = functions.database.ref('/Temperature/{id}')
                 value: stringValue,
             },
         };
+
+        const options = {
+            priority: "high",
+        }
         
-       return admin.messaging().send(payload)
+       return admin.messaging().sendToTopic("temps", payload, options)
        .then((response: any) => {
            console.log('Successfully sent message: ', response);
        })
@@ -73,7 +76,6 @@ exports.getMoisture = functions.database.ref('/Moisture/{id}')
         console.log('New moisture value for plant: ', stringUserPlantId, ' with value ', stringValue, 'at time ', stringTime);
 
         const payload = {
-            topic: 'temps',
             data:{
                 type: "moisture",
                 time: stringTime,
@@ -81,8 +83,12 @@ exports.getMoisture = functions.database.ref('/Moisture/{id}')
                 value: stringValue,
             },
         };
+
+        const options = {
+            priority: "high",
+        }
         
-       return admin.messaging().send(payload)
+       return admin.messaging().sendToTopic("temps", payload, options)
        .then((response: any) => {
            console.log('Successfully sent message: ', response);
        })
@@ -114,7 +120,6 @@ exports.getLight = functions.database.ref('/Light/{id}')
         console.log('New light value for plant: ', stringUserPlantId, ' with value ', stringValue, 'at time ', stringTime);
 
         const payload = {
-            topic: 'temps',
             data:{
                 type: "light",
                 time: stringTime,
@@ -122,8 +127,12 @@ exports.getLight = functions.database.ref('/Light/{id}')
                 value: stringValue,
             },
         };
+
+        const options = {
+            priority: "high",
+        }
         
-       return admin.messaging().send(payload)
+       return admin.messaging().sendToTopic("temps", payload, options)
        .then((response: any) => {
            console.log('Successfully sent message: ', response);
        })
