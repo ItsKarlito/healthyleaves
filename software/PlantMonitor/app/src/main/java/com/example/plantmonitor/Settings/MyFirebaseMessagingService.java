@@ -155,10 +155,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     //TODO: THIS IS WHERE TEMPERATURES SHOULD BE CHANGED ACCORDING TO PLANT ID
     private void initTempRecommendations(){
         this.LT = 17; //change these values to fix when notifications should get triggered.
-        this.HT = 22; //values 17 and 28 were used as defaults.
-        this.LM = 85;
-        this.HM = 100;
-        this.LL = 80;
+        this.HT = 28; //values 17 and 28 were used as defaults.
+        this.LM = 50;
+        this.HM = 95;
+        this.LL = 40;
         this.HL = 90;
     }
 
