@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plantmonitor.General.HomeActivity;
 import com.example.plantmonitor.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,12 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class PlantCatalogActivity extends AppCompatActivity {
 
     private String TAG = "PlantDatabaseActivity";
 
+    TextView textViewPlantDatabaseActivityTitle;
     Button buttonAddPlantCatalog = null;
     RecyclerView recyclerView;
     MyAdapterCatalog myAdapterCatalog;
@@ -40,11 +45,10 @@ public class PlantCatalogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_catalog);
 
-        getSupportActionBar().setTitle("Plant Catalog");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         recyclerView = findViewById(R.id.recyclerView);
 
+        textViewPlantDatabaseActivityTitle = (TextView) findViewById(R.id.textViewPlantDatabaseActivityTitle);
+        textViewPlantDatabaseActivityTitle.setOnClickListener((view) -> {goToHomeActivity();});
         buttonAddPlantCatalog = (Button) findViewById(R.id.buttonAddPlantCatalog);
         buttonAddPlantCatalog.setOnClickListener((view) -> {goToAddPlantCatalogActivity();});
 
@@ -89,6 +93,11 @@ public class PlantCatalogActivity extends AppCompatActivity {
 
     void goToAddPlantCatalogActivity() {
         Intent intent = new Intent(this, AddPlantCatalogActivity.class);
+        startActivity(intent);
+    }
+
+    void goToHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

@@ -1,0 +1,282 @@
+{
+  "Light" : [ {
+    "time" : 1606785675,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 64
+  }, {
+    "time" : 1606785687,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 78
+  }, {
+    "time" : 1606785698,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 76
+  }, {
+    "time" : 1606785709,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 70
+  }, {
+    "time" : 1606785720,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 48
+  }, {
+    "time" : 1606785731,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 64
+  }, {
+    "time" : 1606785742,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 52
+  }, {
+    "time" : 1606785753,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 44
+  }, {
+    "time" : 1606785764,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 78
+  }, {
+    "time" : 1606785774,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 57
+  } ],
+  "Moisture" : [ {
+    "time" : 1606785676,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 0
+  }, {
+    "time" : 1606785687,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 0
+  }, {
+    "time" : 1606785698,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 2
+  }, {
+    "time" : 1606785709,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 6
+  }, {
+    "time" : 1606785720,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 13
+  }, {
+    "time" : 1606785731,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 21
+  }, {
+    "time" : 1606785742,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 17
+  }, {
+    "time" : 1606785753,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 44
+  }, {
+    "time" : 1606785764,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 39
+  }, {
+    "time" : 1606785775,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 42
+  } ],
+  "OwnsA" : {
+    "-MLuKU9iZdUl5zLGsuPz" : {
+      "name" : "Tul",
+      "plantID" : "-ML4o2GMKRLgBOeiuQ3k",
+      "userID" : "xUUQaYN1g0OjRJijNCPv5leJyl73"
+    },
+    "-MLuKozrdmMtJP9mwhgv" : {
+      "name" : "Thanksgiving's Salad",
+      "plantID" : "-ML5WnnH09bhO1KyTsyR",
+      "userID" : "xUUQaYN1g0OjRJijNCPv5leJyl73"
+    },
+    "-MMEQhKBlNIDUKixcjPC" : {
+      "name" : "fiddle",
+      "plantID" : "-ML3aLr0TUFOEm7ZPY9u",
+      "userID" : "r048gPAnpMN5LYYVcXp3oK0xHFt1"
+    },
+    "-MMGdGYBnV2NpcOb9Fz8" : {
+      "name" : "anything",
+      "plantID" : "-MMGd28r78SQCVvZkckT",
+      "userID" : "SVvLudAYM0h0vDkncIRKZnhNOLU2"
+    },
+    "-MMGdoNDhh9MRz_vDxn0" : {
+      "name" : "second",
+      "plantID" : "-ML4o2GMKRLgBOeiuQ3k",
+      "userID" : "SVvLudAYM0h0vDkncIRKZnhNOLU2"
+    },
+    "-MMgJdbZ2i7gM5KHInSq" : {
+      "name" : "panda",
+      "plantID" : "-MMGd28r78SQCVvZkckT",
+      "userID" : "EkteoOPgjIdRdYB4wPaS8pfs8PZ2"
+    },
+    "-MMgJgyxhSCgo9gEpuSQ" : {
+      "name" : "cash",
+      "plantID" : "-ML43_Ql5H3XbpZUUOqq",
+      "userID" : "EkteoOPgjIdRdYB4wPaS8pfs8PZ2"
+    },
+    "-MNP8SMsBlDASldm3AvF" : {
+      "name" : "test",
+      "plantID" : "-ML3aLr0TUFOEm7ZPY9u",
+      "userID" : "xPw6Pfj9fJgyL3gszwjnVBBCaTy1"
+    },
+    "-MNPEwM5-J4VkATVOkFl" : {
+      "name" : "Parker",
+      "plantID" : "-ML448GXmu15-UoOU0jH",
+      "userID" : "xPw6Pfj9fJgyL3gszwjnVBBCaTy1"
+    }
+  },
+  "Plants" : {
+    "-ML3aLr0TUFOEm7ZPY9u" : {
+      "plantDescription" : "Prefers lots of bright, indirect light. Water every 10 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 40,
+      "plantIdealTemperature" : 20,
+      "plantName" : "Fiddle Leaf Fig"
+    },
+    "-ML43_Ql5H3XbpZUUOqq" : {
+      "plantDescription" : "Prefers average room humidity as well as lots of bright, indirect light. Water every 7 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 20,
+      "plantIdealTemperature" : 20,
+      "plantName" : "Chinese Money Plant"
+    },
+    "-ML448GXmu15-UoOU0jH" : {
+      "plantDescription" : "Prefers lots of bright, indirect light. Water every 7 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 70,
+      "plantIdealTemperature" : 27,
+      "plantName" : "Spider Plant"
+    },
+    "-ML4LXJH3Qdie6Guk_S2" : {
+      "plantDescription" : "Prefers low light, partial shade. Water every 7 days.",
+      "plantIdealLight" : 35,
+      "plantIdealMoisture" : 75,
+      "plantIdealTemperature" : 23,
+      "plantName" : "Peace Lily"
+    },
+    "-ML4o2GMKRLgBOeiuQ3k" : {
+      "plantDescription" : "Prefers bright, filtered light. Water every 7 days.",
+      "plantIdealLight" : 75,
+      "plantIdealMoisture" : 65,
+      "plantIdealTemperature" : 21,
+      "plantName" : "Air Plant"
+    },
+    "-ML5WnnH09bhO1KyTsyR" : {
+      "plantDescription" : "Prefers high, direct sunlight. Water every 21 days.",
+      "plantIdealLight" : 95,
+      "plantIdealMoisture" : 10,
+      "plantIdealTemperature" : 19,
+      "plantName" : "Aloe Vera"
+    },
+    "-MLmzM4_E0BU-ce73hXw" : {
+      "plantDescription" : "Prefers bright, indirect light. Water every 21 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 10,
+      "plantIdealTemperature" : 21,
+      "plantName" : "Jade Plant"
+    },
+    "-MLn-6eP9YUegjLMGpdf" : {
+      "plantDescription" : "Capable of growing in both low and bright indirect light. Water every 10 days.",
+      "plantIdealLight" : 60,
+      "plantIdealMoisture" : 10,
+      "plantIdealTemperature" : 21,
+      "plantName" : "Snake Plant"
+    },
+    "-MLn-P0gYPICCPMJSeYU" : {
+      "plantDescription" : "Prefers bright, indirect light. Water every 7 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 50,
+      "plantIdealTemperature" : 22,
+      "plantName" : "Bromeliad"
+    },
+    "-MLn-wi9KpyL6I6ww0c_" : {
+      "plantDescription" : "Prefers bright, indirect light. Water every 7 days.",
+      "plantIdealLight" : 80,
+      "plantIdealMoisture" : 30,
+      "plantIdealTemperature" : 14,
+      "plantName" : "Ivy"
+    },
+    "-MMGd28r78SQCVvZkckT" : {
+      "plantDescription" : "this is for the demo",
+      "plantIdealLight" : 30,
+      "plantIdealMoisture" : 40,
+      "plantIdealTemperature" : 50,
+      "plantName" : "bamboo!"
+    }
+  },
+  "Temperature" : [ {
+    "time" : 1606785677,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 21
+  }, {
+    "time" : 1606785688,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 23
+  }, {
+    "time" : 1606785699,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 24
+  }, {
+    "time" : 1606785710,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 21
+  }, {
+    "time" : 1606785721,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 22
+  }, {
+    "time" : 1606785732,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 23
+  }, {
+    "time" : 1606785743,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 22
+  }, {
+    "time" : 1606785753,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 22
+  }, {
+    "time" : 1606785764,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 24
+  }, {
+    "time" : 1606785775,
+    "userPlantId" : "-ML4o2GMKRLgBOeiuQ3k",
+    "value" : 23
+  } ],
+  "users" : {
+    "7dD4ifkx4PO3oPZyFos57KAxbFf1" : {
+      "email" : "junyoung@gmail.com",
+      "token" : "eNIwVQWFSzeh_zC-b5vTXN:APA91bE6k9o2YYNNiyoLPMy6eSmrdjyQBRnSV6Bsnfyf1zTN-fxJedLBtDqJEZJVGIysaDCrkLMWo9MltB1DuD4Lh9g9K9VvW7-zUT8XRg6y4c0LAw1x7PwRshvUo_useyj964I8ygW_"
+    },
+    "EkteoOPgjIdRdYB4wPaS8pfs8PZ2" : {
+      "email" : "qwerty@gmail.com",
+      "token" : "e-x5Ru91QReeEiUzur4V_y:APA91bFQkZ52RoeCJlRj20NED14XBsVOsqXr64ONg_-yhJqqpua5Krmh_a0-ZCDXNbp1vx4-NG7Gktwfxsj_wn6tJ9LWcfrRIVSb7IpHpm_kEhO_6GLEFwoR0BCZHUps7Hvoc2OQKd79"
+    },
+    "SVvLudAYM0h0vDkncIRKZnhNOLU2" : {
+      "email" : "patel@mail.com",
+      "token" : "c1CYtYY-SDE:APA91bGA2oe26DWj4fagan8al6Ay3fQxXPG3nWzY4wbDGKFNUI7MrzYy5I2fDp1ZttRNFaH7Imwokme1pVdGY21wrR4HauPB2AnVJvGKB10Ot1kCFLXFW3V2SGwbKpVyGgO2nxQWF110"
+    },
+    "r048gPAnpMN5LYYVcXp3oK0xHFt1" : {
+      "email" : "hello@gmail.com",
+      "token" : "eGZqeTpITX-42-XPHy0Snw:APA91bGlUB-9vHVCsqG_5wg15xQSokkRriZPYlrbx8GhDaZMVqBRHS5H0Lcmvq0RsVavxuhksNAo0MfKTSj55PYzl3p-IJ4NLIhDxZ49jy77SGAK83drVgay_fbVSbSxTdrJcHXzgQXl"
+    },
+    "rg3HYyjilRc2AoAuBGe4RPk4Rdg1" : {
+      "email" : "vily.badea@gmail.com",
+      "token" : "cnTlA2JAFSA:APA91bHSWbnTatiy1WbdqwNA7KpeO1W0OwslIA00NPF7E2nWTZAPCe-jd8U36jEw3ilhg0fFNaYNAmu-z9cX8quhGH85mPdMDYg3iAyU-mc3m8dZ2ggpm6VpjCwz9VX4s6hFaLceqeV3",
+      "userPlantId" : 123
+    },
+    "xPw6Pfj9fJgyL3gszwjnVBBCaTy1" : {
+      "email" : "junyoung@hotmail.com",
+      "token" : "fa5lnJWqSMazQc2peV42xf:APA91bFbWEbsUhIIKqc38mtsJ4j7Ijo7gXs9jJnhMmqgY8rg4VrH5lfqOld7spj-vjXTPOCRaD18aXDkAbIt1tUGC7brjlqOcZFhFmU69MocwktGjWUirQrOQLWcBEH-ZQvc3ViSPu2V"
+    },
+    "xUUQaYN1g0OjRJijNCPv5leJyl73" : {
+      "email" : "thomas.am.tran@hotmail.com",
+      "token" : "c1CYtYY-SDE:APA91bGA2oe26DWj4fagan8al6Ay3fQxXPG3nWzY4wbDGKFNUI7MrzYy5I2fDp1ZttRNFaH7Imwokme1pVdGY21wrR4HauPB2AnVJvGKB10Ot1kCFLXFW3V2SGwbKpVyGgO2nxQWF110"
+    }
+  }
+}

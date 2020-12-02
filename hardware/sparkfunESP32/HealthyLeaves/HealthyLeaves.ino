@@ -18,8 +18,8 @@ Hardware code for the HealthyLeaves device.
 FirebaseData firebaseData;//define FirebaseESP32 data object
 
 //WiFi authentication
-#define WIFI_SSID "NatRouter"
-#define WIFI_PASSWORD "lamehorseislame"
+#define WIFI_SSID "BELL197"
+#define WIFI_PASSWORD "6527757A"
 
 //time configuration
 const char* ntpServer = "pool.ntp.org";//time server
@@ -31,7 +31,7 @@ enum Sensor {light, moisture, temperature};//list of sensors
 
 //user data identification
 int id = 0;
-String userPlantId = "-ML5WnnH09bhO1KyTsyR";
+String userPlantId = "-ML4o2GMKRLgBOeiuQ3k";
 
 void setup()
 {

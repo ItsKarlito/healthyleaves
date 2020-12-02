@@ -4,14 +4,16 @@ public class OwnsA {
     private String name;
     private String plantID;
     private String userID;
+    private String deviceID;
 
     public OwnsA() {
     }
 
-    public OwnsA(String name, String plantID, String userID) {
+    public OwnsA(String name, String plantID, String userID, String deviceID) {
         this.name = name;
         this.plantID = plantID;
         this.userID = userID;
+        this.deviceID = deviceID;
     }
 
     public String getName() {
@@ -38,12 +40,17 @@ public class OwnsA {
         this.userID = userID;
     }
 
+    public String getDeviceID() { return deviceID; }
+
+    public void setDeviceID(String deviceID) {this.deviceID = deviceID; }
+
     @Override
     public String toString() {
         return "OwnsA{" +
                 "name='" + name + '\'' +
                 ", plantID='" + plantID + '\'' +
                 ", userID='" + userID + '\'' +
+                ", deviceID='" + deviceID + '\'' +
                 '}';
     }
 }
