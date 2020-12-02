@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
@@ -34,8 +35,10 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
     GraphView moistureGraphView;
     LineGraphSeries series;
 
+    ArrayList<Moisture> moistureArray = new ArrayList<Moisture>();
+
     ListView moistureListView;
-    ArrayList<String> moistureArrayList = new ArrayList<>();
+    ArrayList<String> moistureArrayListString = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,39 +49,56 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
         moistureGraphView = findViewById(R.id.moistureGraph);
         series = new LineGraphSeries();
         moistureGraphView.addSeries(series);
-        //moistureGraphView.getViewport().setMinY(0.0);
-        //moistureGraphView.getViewport().setMaxY(100.0);
-        //moistureGraphView.getViewport().setYAxisBoundsManual(true);
+        moistureGraphView.getViewport().setMinY(0.0);
+        moistureGraphView.getViewport().setMaxY(100.0);
+        moistureGraphView.getViewport().setYAxisBoundsManual(true);
         moistureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.WHITE);
         moistureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Moisture levels %");
         moistureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Moisture");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        reference.addValueEventListener(new ValueEventListener() {
+        Query latestMoisture = reference.child("Moisture").orderByChild("time");
+        latestMoisture.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataPoint[] dp = new DataPoint[(int) snapshot.getChildrenCount()];
+
+                int sizeOfArray = (int) snapshot.getChildrenCount();
+                DataPoint[] dp = new DataPoint[sizeOfArray];
                 int index = 0;
 
+                //get all moisture values in an arraylist
                 for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
                     Moisture moisture = myDataSnapshot.getValue(Moisture.class);
-                    dp[index] = new DataPoint(moisture.getTime(), moisture.getValue());
-                    index++;
+                    moistureArray.add(moisture);
 
-                    moistureArrayList.add(index + ". Moisture Levels: " + moisture.getValue() + "%");
+                    //dp[index] = new DataPoint(light.getTime(), light.getValue());
+                    index++;
+                    moistureArrayListString.add(index + ". Moisture Levels: " + moisture.getValue() + "%");
+                }
+
+                //bubblesort
+                for (int i = 0; i < moistureArray.size()-1; i++) {
+                    for (int j = 0; j < moistureArray.size()-i-1; j++) {
+                        if (moistureArray.get(j).getTime() > moistureArray.get(j+1).getTime()) {
+                            Moisture tempMoisture = moistureArray.get(j);
+                            moistureArray.set(j, moistureArray.get(j+1));
+                            moistureArray.set(j+1, tempMoisture);
+                        }
+                    }
+                }
+
+                //put data from arraylist in datapoints
+                for (int k = 0; k < sizeOfArray; k++) {
+                    dp[k] = new DataPoint(moistureArray.get(k).getTime(), moistureArray.get(k).getValue());
                 }
                 series.resetData(dp);
 
+                //log data
                 ArrayAdapter moistureArrayAdapter = new ArrayAdapter(PlantMoistureDetailsActivity.this,
-                        android.R.layout.simple_list_item_1, moistureArrayList);
+                        android.R.layout.simple_list_item_1, moistureArrayListString);
                 moistureListView.setAdapter(moistureArrayAdapter);
             }
 
