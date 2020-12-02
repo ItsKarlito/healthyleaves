@@ -60,8 +60,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Moisture");
-        Query latestMoisture = reference.child("Moisture").orderByChild("time");
-        latestMoisture.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -70,6 +69,8 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
                 int index = 0;
 
                 //get all moisture values in an arraylist
+                moistureArray.clear();
+                moistureArrayListString.clear();
                 for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
                     Moisture moisture = myDataSnapshot.getValue(Moisture.class);
                     moistureArray.add(moisture);
@@ -104,7 +105,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Failed to load Moisture", Toast.LENGTH_SHORT).show();
             }
         });
     }

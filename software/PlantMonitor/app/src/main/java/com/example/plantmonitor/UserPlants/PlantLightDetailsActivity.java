@@ -60,8 +60,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Light");
-        Query latestLight = reference.child("Light").orderByChild("time");
-        latestLight.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -70,7 +69,9 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
                 int index = 0;
 
                 //get all light values in an arraylist
-                for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
+                lightArray.clear();
+                lightArrayListString.clear();
+                for (DataSnapshot myDataSnapshot : snapshot.getChildren()) {
                     Light light = myDataSnapshot.getValue(Light.class);
                     lightArray.add(light);
 
@@ -79,12 +80,12 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
                 }
 
                 //bubblesort
-                for (int i = 0; i < lightArray.size()-1; i++) {
-                    for (int j = 0; j < lightArray.size()-i-1; j++) {
-                        if (lightArray.get(j).getTime() > lightArray.get(j+1).getTime()) {
+                for (int i = 0; i < lightArray.size() - 1; i++) {
+                    for (int j = 0; j < lightArray.size() - i - 1; j++) {
+                        if (lightArray.get(j).getTime() > lightArray.get(j + 1).getTime()) {
                             Light tempLight = lightArray.get(j);
-                            lightArray.set(j, lightArray.get(j+1));
-                            lightArray.set(j+1, tempLight);
+                            lightArray.set(j, lightArray.get(j + 1));
+                            lightArray.set(j + 1, tempLight);
                         }
                     }
                 }
@@ -103,7 +104,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Failed to load Lights", Toast.LENGTH_SHORT).show();
             }
         });
     }

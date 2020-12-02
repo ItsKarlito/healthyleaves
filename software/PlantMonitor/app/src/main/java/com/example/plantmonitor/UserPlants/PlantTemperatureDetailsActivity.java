@@ -60,8 +60,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Temperature");
-        Query latestTemperature = reference.child("Temperature").orderByChild("time");
-        latestTemperature.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -70,6 +69,8 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
                 int index = 0;
 
                 //get all temperature values in an arraylist
+                temperatureArray.clear();
+                temperatureArrayListString.clear();
                 for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
                     Temperature temperature = myDataSnapshot.getValue(Temperature.class);
                     temperatureArray.add(temperature);
@@ -104,7 +105,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Failed to load Temperature", Toast.LENGTH_SHORT).show();
             }
         });
     }
