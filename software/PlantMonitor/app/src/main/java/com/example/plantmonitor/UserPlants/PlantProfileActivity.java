@@ -39,7 +39,9 @@ public class PlantProfileActivity extends AppCompatActivity {
     TextView textViewPlantMoistureIdeal;
     TextView textViewPlantTemperatureIdeal;
 
-    TextView textViewPlantRecommendations;
+    TextView textViewPlantLightRecommendations;
+    TextView textViewPlantMoistureRecommendations;
+    TextView textViewPlantTemperatureRecommendations;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -60,7 +62,9 @@ public class PlantProfileActivity extends AppCompatActivity {
     int tempPlantIdealMoisture;
     int tempPlantIdealTemperature;
 
-    String tempRecommendations;
+    String tempLightRecommendations;
+    String tempMoistureRecommendations;
+    String tempTemperatureRecommendations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +76,13 @@ public class PlantProfileActivity extends AppCompatActivity {
         textViewPlantLightDetails = (TextView) findViewById(R.id.textViewPlantLightDetails);
         textViewPlantMoistureDetails = (TextView) findViewById(R.id.textViewPlantMoistureDetails);
         textViewPlantTemperatureDetails = (TextView) findViewById(R.id.textViewPlantTemperatureDetails);
-        textViewPlantRecommendations = (TextView) findViewById(R.id.textViewPlantRecommendations);
         textViewPlantLightIdeal = (TextView) findViewById(R.id.textViewPlantLightIdeal);
         textViewPlantMoistureIdeal = (TextView) findViewById(R.id.textViewPlantMoistureIdeal);
         textViewPlantTemperatureIdeal = (TextView) findViewById(R.id.textViewPlantTemperatureIdeal);
+
+        textViewPlantLightRecommendations = (TextView) findViewById(R.id.textViewPlantLightRecommendations);
+        textViewPlantMoistureRecommendations = (TextView) findViewById(R.id.textViewPlantMoistureRecommendations);
+        textViewPlantTemperatureRecommendations = (TextView) findViewById(R.id.textViewPlantTemperatureRecommendations);
 
         showInformation();
     }
@@ -100,8 +107,6 @@ public class PlantProfileActivity extends AppCompatActivity {
 
         tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
         textViewPlantTemperatureIdeal.setText("(ideal: " + tempPlantIdealTemperature + "°C)");
-
-        tempRecommendations = "";
 
         tempUserPlantID = bundle.getString("userPlantID");
         tempDeviceID = bundle.getString("deviceID");
@@ -138,12 +143,12 @@ public class PlantProfileActivity extends AppCompatActivity {
                     });
 
                     if (currentLight < tempPlantIdealLight - 5) {
-                        tempRecommendations = tempRecommendations + "move your plant to a more sunny location.\n";
+                        tempLightRecommendations = "move your plant to a more sunny location.";
                     }
                     else if (currentLight >  tempPlantIdealLight + 5) {
-                        tempRecommendations = tempRecommendations + "move plant to a location with more shade.\n";
+                        tempLightRecommendations = "move plant to a location with more shade.";
                     }
-                    textViewPlantRecommendations.setText(tempRecommendations);
+                    textViewPlantLightRecommendations.setText(tempLightRecommendations);
                 }
             }
 
@@ -179,12 +184,12 @@ public class PlantProfileActivity extends AppCompatActivity {
                     });
 
                     if (currentMoisture < tempPlantIdealMoisture - 5) {
-                        tempRecommendations = tempRecommendations + "water your plant more often.\n";
+                        tempMoistureRecommendations = "water your plant more often.";
                     }
                     else if (currentMoisture >  tempPlantIdealMoisture + 5) {
-                        tempRecommendations = tempRecommendations + "reduce the amount of water you're pouring.\n";
+                        tempMoistureRecommendations = "reduce the amount of water you're pouring.";
                     }
-                    textViewPlantRecommendations.setText(tempRecommendations);
+                    textViewPlantMoistureRecommendations.setText(tempMoistureRecommendations);
                 }
             }
 
@@ -219,12 +224,12 @@ public class PlantProfileActivity extends AppCompatActivity {
                     });
 
                     if (currentTemperature < tempPlantIdealTemperature - 5) {
-                        tempRecommendations = tempRecommendations + "move your plant to a warmer environment.\n";
+                        tempTemperatureRecommendations = "move your plant to a warmer environment.";
                     }
                     else if (currentTemperature >  tempPlantIdealTemperature + 5) {
-                        tempRecommendations = tempRecommendations + "move your plant to a cooler environment.\n";
+                        tempTemperatureRecommendations = "move your plant to a cooler environment.";
                     }
-                    textViewPlantRecommendations.setText(tempRecommendations);
+                    textViewPlantTemperatureRecommendations.setText(tempTemperatureRecommendations);
                 }
             }
 
