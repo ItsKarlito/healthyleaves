@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,18 +28,9 @@ public class PlantProfileActivity extends AppCompatActivity {
 
     TextView textViewUserPlantName;
     TextView textViewUserPlantType;
-
-    TextView textViewPlantLightDetails;
-    TextView textViewPlantMoistureDetails;
-    TextView textViewPlantTemperatureDetails;
-
-    TextView textViewPlantLightIdeal;
-    TextView textViewPlantMoistureIdeal;
-    TextView textViewPlantTemperatureIdeal;
-
-    TextView textViewPlantLightRecommendations;
-    TextView textViewPlantMoistureRecommendations;
-    TextView textViewPlantTemperatureRecommendations;
+    Button buttonGoToPlantLightDetailsActivity;
+    Button buttonGoToPlantMoistureDetailsActivity;
+    Button buttonGoToPlantTemperatureDetailsActivity;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -51,38 +40,23 @@ public class PlantProfileActivity extends AppCompatActivity {
 
     private Bundle bundle;
 
-    String tempUserPlantID;
-    String tempDeviceID;
-
     int currentLight = -1;
     int currentMoisture = -1;
     int currentTemperature = -1;
-
-    int tempPlantIdealLight;
-    int tempPlantIdealMoisture;
-    int tempPlantIdealTemperature;
-
-    String tempLightRecommendations;
-    String tempMoistureRecommendations;
-    String tempTemperatureRecommendations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_profile);
 
+        getSupportActionBar().setTitle("Plant Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         textViewUserPlantName = (TextView) findViewById(R.id.textViewUserPlantName);
         textViewUserPlantType = (TextView) findViewById(R.id.textViewUserPlantType);
-        textViewPlantLightDetails = (TextView) findViewById(R.id.textViewPlantLightDetails);
-        textViewPlantMoistureDetails = (TextView) findViewById(R.id.textViewPlantMoistureDetails);
-        textViewPlantTemperatureDetails = (TextView) findViewById(R.id.textViewPlantTemperatureDetails);
-        textViewPlantLightIdeal = (TextView) findViewById(R.id.textViewPlantLightIdeal);
-        textViewPlantMoistureIdeal = (TextView) findViewById(R.id.textViewPlantMoistureIdeal);
-        textViewPlantTemperatureIdeal = (TextView) findViewById(R.id.textViewPlantTemperatureIdeal);
-
-        textViewPlantLightRecommendations = (TextView) findViewById(R.id.textViewPlantLightRecommendations);
-        textViewPlantMoistureRecommendations = (TextView) findViewById(R.id.textViewPlantMoistureRecommendations);
-        textViewPlantTemperatureRecommendations = (TextView) findViewById(R.id.textViewPlantTemperatureRecommendations);
+        buttonGoToPlantLightDetailsActivity = (Button) findViewById(R.id.buttonGoToPlantLightDetailsActivity);
+        buttonGoToPlantMoistureDetailsActivity = (Button) findViewById(R.id.buttonGoToPlantMoistureDetailsActivity);
+        buttonGoToPlantTemperatureDetailsActivity = (Button) findViewById(R.id.buttonGoToPlantTemperatureDetailsActivity);
 
         showInformation();
     }
@@ -90,66 +64,38 @@ public class PlantProfileActivity extends AppCompatActivity {
     private void showInformation() {
         bundle = getIntent().getExtras();
 
+        String tempUserPlantID = bundle.getString("userPlantID");
+        getValues(tempUserPlantID);
+
         String tempUserPlantName = bundle.getString("userPlantName");
-        textViewUserPlantName.setText(tempUserPlantName);
-
         String tempPlantID = bundle.getString("plantID");
-
         String tempPlantName = bundle.getString("plantName");
+        textViewUserPlantName.setText(tempUserPlantName);
         textViewUserPlantType.setText(tempPlantName);
-        textViewUserPlantName.setOnClickListener((view) -> {goToUserPlantsListActivity();});
 
-        tempPlantIdealLight = bundle.getInt("plantIdealLight");
-        textViewPlantLightIdeal.setText("(ideal: " + tempPlantIdealLight + "%)");
-
-        tempPlantIdealMoisture = bundle.getInt("plantIdealMoisture");
-        textViewPlantMoistureIdeal.setText("(ideal: " + tempPlantIdealMoisture + "%)");
-
-        tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
-        textViewPlantTemperatureIdeal.setText("(ideal: " + tempPlantIdealTemperature + "°C)");
-
-        tempUserPlantID = bundle.getString("userPlantID");
-        tempDeviceID = bundle.getString("deviceID");
-
-        getValues(tempUserPlantID, tempDeviceID);
     }
 
-    private void getValues(String tempUserPlantID, String tempDeviceID) {
+    private void getValues(String tempUserPlantID) {
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
-        Query latestLight = databaseReference.child("Light").orderByChild("time").limitToLast(10);
+        Query latestLight = databaseReference.child("Light").orderByChild("time");
         latestLight.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int currentTime = -1;
                 for(DataSnapshot child : snapshot.getChildren()) {
                     Light light = child.getValue(Light.class);
-                    if(light.getUserPlantId().equals(tempUserPlantID) || light.getUserPlantId().equals(tempDeviceID)) {
-                        if(light.getTime() > currentTime) {
-                            currentLight = light.getValue();
-                        }
+                    if(light.getTime() > currentTime) {
+                        currentLight = light.getValue();
                     }
                 }
 
-                if(currentLight != -1) {
-                    textViewPlantLightDetails.setText(currentLight + "%");
-                    textViewPlantLightDetails.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent (PlantProfileActivity.this, PlantLightDetailsActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-
-                    if (currentLight < tempPlantIdealLight - 5) {
-                        tempLightRecommendations = "move your plant to a more sunny location.";
-                    }
-                    else if (currentLight >  tempPlantIdealLight + 5) {
-                        tempLightRecommendations = "move plant to a location with more shade.";
-                    }
-                    textViewPlantLightRecommendations.setText(tempLightRecommendations);
-                }
+                Integer tempPlantIdealLight = bundle.getInt("plantIdealLight");
+                buttonGoToPlantLightDetailsActivity.setText(
+                        "Current Light: " + Integer.toString(currentLight) +
+                                "\nIdeal Light: " + Integer.toString(tempPlantIdealLight)
+                );
             }
 
             @Override
@@ -159,38 +105,23 @@ public class PlantProfileActivity extends AppCompatActivity {
         });
 
 
-        Query latestMoisture = databaseReference.child("Moisture").orderByChild("time").limitToLast(10);
+        Query latestMoisture = databaseReference.child("Moisture").orderByChild("time");
         latestMoisture.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int currentTime = -1;
                 for(DataSnapshot child : snapshot.getChildren()) {
                     Moisture moisture = child.getValue(Moisture.class);
-                    if(moisture.getUserPlantId().equals(tempUserPlantID) || moisture.getUserPlantId().equals(tempDeviceID)) {
-                        if (moisture.getTime() > currentTime) {
-                            currentMoisture = moisture.getValue();
-                        }
+                    if(moisture.getTime() > currentTime) {
+                        currentMoisture = moisture.getValue();
                     }
                 }
 
-                if (currentMoisture != -1) {
-                    textViewPlantMoistureDetails.setText(currentMoisture + "%");
-                    textViewPlantMoistureDetails.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent (PlantProfileActivity.this, PlantMoistureDetailsActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-
-                    if (currentMoisture < tempPlantIdealMoisture - 5) {
-                        tempMoistureRecommendations = "water your plant more often.";
-                    }
-                    else if (currentMoisture >  tempPlantIdealMoisture + 5) {
-                        tempMoistureRecommendations = "reduce the amount of water you're pouring.";
-                    }
-                    textViewPlantMoistureRecommendations.setText(tempMoistureRecommendations);
-                }
+                Integer tempPlantIdealMoisture = bundle.getInt("plantIdealMoisture");
+                buttonGoToPlantMoistureDetailsActivity.setText(
+                        "Current Moisture: " + Integer.toString(currentMoisture) +
+                                "\nIdeal Moisture: " + Integer.toString(tempPlantIdealMoisture)
+                );
             }
 
             @Override
@@ -199,38 +130,23 @@ public class PlantProfileActivity extends AppCompatActivity {
             }
         });
 
-        Query latestTemperature = databaseReference.child("Temperature").orderByChild("time").limitToLast(10);
+        Query latestTemperature = databaseReference.child("Temperature").orderByChild("time").limitToFirst(10);
         latestTemperature.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int currentTime = -1;
                 for(DataSnapshot child : snapshot.getChildren()) {
                     Temperature temperature = child.getValue(Temperature.class);
-                    if (temperature.getUserPlantId().equals(tempUserPlantID) || temperature.getUserPlantId().equals(tempDeviceID)) {
-                        if (temperature.getTime() > currentTime) {
-                            currentTemperature = temperature.getValue();
-                        }
+                    if (temperature.getTime() > currentTime) {
+                        currentTemperature = temperature.getValue();
                     }
                 }
 
-                if (currentTemperature != -1) {
-                    textViewPlantTemperatureDetails.setText(currentTemperature + "°C");
-                    textViewPlantTemperatureDetails.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent (PlantProfileActivity.this, PlantTemperatureDetailsActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-
-                    if (currentTemperature < tempPlantIdealTemperature - 5) {
-                        tempTemperatureRecommendations = "move your plant to a warmer environment.";
-                    }
-                    else if (currentTemperature >  tempPlantIdealTemperature + 5) {
-                        tempTemperatureRecommendations = "move your plant to a cooler environment.";
-                    }
-                    textViewPlantTemperatureRecommendations.setText(tempTemperatureRecommendations);
-                }
+                Integer tempPlantIdealTemperature = bundle.getInt("plantIdealTemperature");
+                buttonGoToPlantTemperatureDetailsActivity.setText(
+                        "Current Temperature: " + Integer.toString(currentTemperature) +
+                                "\nIdeal Temperature: " + Integer.toString(tempPlantIdealTemperature)
+                );
             }
 
             @Override
@@ -238,10 +154,5 @@ public class PlantProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed to load Temperature", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    void goToUserPlantsListActivity() {
-        Intent intent = new Intent(this, UserPlantsListActivity.class);
-        startActivity(intent);
     }
 }

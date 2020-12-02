@@ -13,10 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.plantmonitor.General.HomeActivity;
 import com.example.plantmonitor.PlantCatalog.MyAdapterCatalog;
 import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.PlantCatalog.PlantCatalogActivity;
@@ -36,7 +34,6 @@ public class UserPlantsListActivity extends AppCompatActivity {
 
     private String TAG = "UserPlantsDatabaseActivity";
 
-    TextView textViewUserPlantsActivityTitle;
     Button buttonAddUserPlant = null;
 
     RecyclerView recyclerView;
@@ -48,7 +45,6 @@ public class UserPlantsListActivity extends AppCompatActivity {
     private DatabaseReference databaseReferencePlants;
     ArrayList<String> userPlantKeyArray = new ArrayList<String>();
     ArrayList<OwnsA> ownsAArray = new ArrayList<OwnsA>();
-    ArrayList<String> plantKeyArray = new ArrayList<String>();
     ArrayList<Plant> userPlantArray = new ArrayList<Plant>();
 
     @Override
@@ -56,10 +52,10 @@ public class UserPlantsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_plants_list);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        getSupportActionBar().setTitle("User Plants List");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        textViewUserPlantsActivityTitle = (TextView) findViewById(R.id.textViewUserPlantsActivityTitle);
-        textViewUserPlantsActivityTitle.setOnClickListener((view) -> {goToHomeActivity();});
+        recyclerView = findViewById(R.id.recyclerView);
 
         buttonAddUserPlant = (Button) findViewById(R.id.buttonAddUserPlant);
         buttonAddUserPlant.setOnClickListener((view) -> {goToPlantCatalogActivity();});
@@ -101,12 +97,11 @@ public class UserPlantsListActivity extends AppCompatActivity {
                     String plantKey = child.getKey();
                     for (int i = 0; i < ownsAArray.size(); i++) {
                         if (ownsAArray.get(i).getPlantID().equals(plantKey)) {
-                            plantKeyArray.add(plantKey);
                             userPlantArray.add(plant);
                         }
                     }
                 }
-                myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, plantKeyArray, userPlantArray);
+                myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
                 recyclerView.setAdapter(myAdapterUserPlants);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             }
@@ -119,6 +114,10 @@ public class UserPlantsListActivity extends AppCompatActivity {
 
         DividerItemDecoration itemDecor = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecor);
+
+        myAdapterUserPlants = new MyAdapterUserPlants(getApplicationContext(), userPlantKeyArray, ownsAArray, userPlantArray);
+        recyclerView.setAdapter(myAdapterUserPlants);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     void goToPlantCatalogActivity() {
@@ -127,8 +126,8 @@ public class UserPlantsListActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Choose your plant's type", Toast.LENGTH_SHORT).show();
     }
 
-    void goToHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

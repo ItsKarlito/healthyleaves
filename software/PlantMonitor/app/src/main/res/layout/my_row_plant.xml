@@ -27,7 +27,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="start"
                 android:text="textViewPlantName"
-                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -39,23 +38,19 @@
 
             <Button
                 android:id="@+id/buttonEditPlantCatalog"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:text="edit"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/colorButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textViewPlantName" />
 
             <Button
                 android:id="@+id/buttonAddUserPlant"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="add"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/colorButton"
                 app:layout_constraintEnd_toEndOf="@+id/buttonEditPlantCatalog"
                 app:layout_constraintStart_toStartOf="@+id/buttonEditPlantCatalog"
                 app:layout_constraintTop_toBottomOf="@+id/buttonEditPlantCatalog"
@@ -68,7 +63,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="start"
                 android:text="IdealTemperature"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +79,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="start"
                 android:text="IdealMoisture"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +95,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="start"
                 android:text="IdealLight"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -119,7 +111,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="left"
                 android:text="textViewPlantDescription"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +121,7 @@
                 app:layout_constraintVertical_bias="0.3" />
 
             <View
-                android:id="@+id/divider1"
+                android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:background="?android:attr/listDivider"
@@ -141,17 +132,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewPlantDescription"
                 app:layout_constraintVertical_bias="2.0" />
 
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="?android:attr/listDivider"
-                android:backgroundTint="@color/colorButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1"
-                app:layout_constraintVertical_bias="2.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

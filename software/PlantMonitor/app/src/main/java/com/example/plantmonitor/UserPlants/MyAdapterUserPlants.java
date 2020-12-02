@@ -35,24 +35,14 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
 
     ArrayList<String> userPlantKeyArray;
     ArrayList<OwnsA> ownsAArray;
-    ArrayList<String> plantKeyArray = new ArrayList<String>();
-    ArrayList<Plant> userPlantArray = new ArrayList<Plant>();
+    ArrayList<Plant> userPlantArray;
     Context context;
 
-    public MyAdapterUserPlants(Context context, ArrayList<String> userPlantKeyArray, ArrayList<OwnsA> ownsAArray, ArrayList<String> plantKeyArray, ArrayList<Plant> userPlantArray){
+    public MyAdapterUserPlants(Context context, ArrayList<String> userPlantKeyArray, ArrayList<OwnsA> ownsAArray, ArrayList<Plant> userPlantArray){
         this.context = context;
         this.userPlantKeyArray = userPlantKeyArray;
         this.ownsAArray = ownsAArray;
-
-        for (int i = 0; i < ownsAArray.size(); i++) {
-            for (int j = 0; j < userPlantArray.size(); j++) {
-                if (ownsAArray.get(i).getPlantID().equals(plantKeyArray.get(j))) {
-                    this.plantKeyArray.add(plantKeyArray.get(j));
-                    this.userPlantArray.add(userPlantArray.get(j));
-                    break;
-                }
-            }
-        }
+        this.userPlantArray = userPlantArray;
     }
 
     @NonNull
@@ -99,7 +89,6 @@ public class MyAdapterUserPlants extends RecyclerView.Adapter<MyAdapterUserPlant
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
         bundle.putString("userPlantID", userPlantKey);
-        bundle.putString("deviceID", ownsA.getDeviceID());
         bundle.putString("userPlantName", ownsA.getName());
         bundle.putString("plantID", ownsA.getPlantID());
         bundle.putString("plantName", plant.getPlantName());

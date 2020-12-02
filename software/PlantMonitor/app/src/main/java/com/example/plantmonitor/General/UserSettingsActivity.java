@@ -13,5 +13,7 @@ public class UserSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_settings);
 
+        getSupportActionBar().setTitle("User Settings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

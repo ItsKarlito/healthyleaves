@@ -10,9 +10,6 @@
     <color name="colorPrimary">#11909D</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorTitleBar">#20B2AA</color>
-
-    <color name="colorBackground">#98FB98</color>
-    <color name="colorButton">#006400</color>
-    <color name="colorBar">#3CB371</color>
+    <color name="colorTitleBar">#11909D</color>
+    <color name="colorBackground">#58C3CE</color>
 </resources>

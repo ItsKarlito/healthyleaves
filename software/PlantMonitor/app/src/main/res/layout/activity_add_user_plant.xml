@@ -14,7 +14,6 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="Add Plant to User"
-        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +22,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.041" />
+
+    <TextView
+        android:id="@+id/textViewUserID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="userID"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewAddUserPlantsActivityTitle"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/textViewAddUserPlantsActivityTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddUserPlantsActivityTitle"
+        app:layout_constraintVertical_bias="0.038" />
 
     <EditText
         android:id="@+id/editTextUserPlantName"
@@ -33,39 +48,11 @@
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewAddUserPlantsActivityTitle"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewAddUserPlantsActivityTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAddUserPlantsActivityTitle"
-        app:layout_constraintVertical_bias="0.024" />
-
-    <EditText
-        android:id="@+id/editTextDeviceId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Device Code"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUserPlantName"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="@color/colorButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDeviceId"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewUserID"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/textViewUserID"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserID"
+        app:layout_constraintVertical_bias="0.033" />
 
     <TextView
         android:id="@+id/textViewPlantName"
@@ -74,15 +61,14 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="plantName"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider1"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserPlantName"
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
         android:id="@+id/textViewPlantIdealLight"
@@ -91,15 +77,13 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="plantIdealLight"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewPlantName"
-        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="@+id/textViewPlantName"
         app:layout_constraintTop_toBottomOf="@+id/textViewPlantName"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewPlantIdealMoisture"
@@ -108,7 +92,6 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="plantIdealMoisture"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +108,6 @@
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="plantIdealTemperature"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -137,21 +119,20 @@
 
     <TextView
         android:id="@+id/textViewPlantDescription"
-        android:layout_width="300dp"
+        android:layout_width="183dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="plantDescription"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewPlantIdealTemperature"
         app:layout_constraintStart_toStartOf="@+id/textViewPlantIdealTemperature"
         app:layout_constraintTop_toBottomOf="@+id/textViewPlantIdealTemperature"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.027" />
 
     <Button
         android:id="@+id/buttonAddUserPlant"
@@ -159,28 +140,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginLeft="120dp"
-        android:backgroundTint="@color/colorButton"
-        android:text="save"
-        android:textAllCaps="false"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDeviceId"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantDescription"
+        app:layout_constraintVertical_bias="0.142" />
 
     <Button
         android:id="@+id/buttonCancelPlantDatabase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_light"
-        android:text="cancel"
-        android:textAllCaps="false"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextUserPlantName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextUserPlantName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDeviceId"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantDescription"
+        app:layout_constraintVertical_bias="0.142" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

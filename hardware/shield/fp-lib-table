@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name healthyleaves)(type KiCad)(uri ${KIPRJMOD}/healthyleaves.pretty)(options "")(descr ""))
-)
