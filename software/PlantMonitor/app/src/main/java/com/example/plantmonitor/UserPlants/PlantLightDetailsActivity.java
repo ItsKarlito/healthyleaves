@@ -72,7 +72,6 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
                     Light light = myDataSnapshot.getValue(Light.class);
                     lightArray.add(light);
 
-                    //dp[index] = new DataPoint(light.getTime(), light.getValue());
                     index++;
                     lightArrayListString.add(index + ". Light Levels: " + light.getValue() + "%");
                 }
