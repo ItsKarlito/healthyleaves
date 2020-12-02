@@ -55,6 +55,7 @@ public class PlantTemperatureDetailsActivity extends AppCompatActivity {
         temperatureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.WHITE);
+        series.setDataPointsRadius(5f);
         temperatureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Temperature levels %");
         temperatureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 

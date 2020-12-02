@@ -55,6 +55,7 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
         lightGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.WHITE);
+        series.setDataPointsRadius(5f);
         lightGraphView.getGridLabelRenderer().setVerticalAxisTitle("Light levels %");
         lightGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 

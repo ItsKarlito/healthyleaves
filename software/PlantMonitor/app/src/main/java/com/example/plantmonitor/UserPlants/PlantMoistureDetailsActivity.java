@@ -55,6 +55,7 @@ public class PlantMoistureDetailsActivity extends AppCompatActivity {
         moistureGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.WHITE);
+        series.setDataPointsRadius(5f);
         moistureGraphView.getGridLabelRenderer().setVerticalAxisTitle("Moisture levels %");
         moistureGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
