@@ -152,10 +152,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void initTempRecommendations(){
         this.LT = 17; //change these values to fix when notifications should get triggered.
         this.HT = 28; //values 17 and 28 were used as defaults.
-        this.LM = 17;
-        this.HM = 28;
-        this.LL = 17;
-        this.HL = 28;
+        this.LM = 50;
+        this.HM = 100;
+        this.LL = 50;
+        this.HL = 90;
     }
 
 }
