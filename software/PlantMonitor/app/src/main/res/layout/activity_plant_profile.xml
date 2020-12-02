@@ -238,7 +238,7 @@
         app:layout_constraintVertical_bias="0.02" />
 
     <TextView
-        android:id="@+id/textViewPlantRecommendations"
+        android:id="@+id/textViewPlantLightRecommendations"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="left"
@@ -253,6 +253,38 @@
         app:layout_constraintTop_toBottomOf="@+id/divider4"
         app:layout_constraintVertical_bias="0.02" />
 
+    <TextView
+        android:id="@+id/textViewPlantMoistureRecommendations"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantLightRecommendations"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantLightRecommendations"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantLightRecommendations"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewPlantTemperatureRecommendations"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPlantMoistureRecommendations"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewPlantMoistureRecommendations"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantMoistureRecommendations"
+        app:layout_constraintVertical_bias="0.0" />
+
     <View
         android:id="@+id/divider5"
         android:layout_width="match_parent"
@@ -263,6 +295,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPlantRecommendations"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPlantTemperatureRecommendations"
         app:layout_constraintVertical_bias="0.02" />
 </androidx.constraintlayout.widget.ConstraintLayout>
