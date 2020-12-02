@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.plantmonitor.PlantCatalog.Plant;
 import com.example.plantmonitor.R;
 
 import com.google.firebase.database.DataSnapshot;
@@ -32,51 +33,70 @@ public class PlantLightDetailsActivity extends AppCompatActivity {
     GraphView lightGraphView;
     LineGraphSeries series;
 
+    ArrayList<Light> lightArray = new ArrayList<Light>();
+
     ListView lightListView;
-    ArrayList<String> lightArrayList = new ArrayList<>();
+    ArrayList<String> lightArrayListString = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_light_details);
 
+        //setup GraphView
         lightListView = findViewById(R.id.lightListView);
         lightGraphView = findViewById(R.id.lightGraph);
         series = new LineGraphSeries();
         lightGraphView.addSeries(series);
-        //lightGraphView.getViewport().setMinY(0.0);
-        //lightGraphView.getViewport().setMaxY(100.0);
-        //lightGraphView.getViewport().setYAxisBoundsManual(true);
+        lightGraphView.getViewport().setMinY(0.0);
+        lightGraphView.getViewport().setMaxY(100.0);
+        lightGraphView.getViewport().setYAxisBoundsManual(true);
         lightGraphView.getGridLabelRenderer().setNumHorizontalLabels(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.WHITE);
         lightGraphView.getGridLabelRenderer().setVerticalAxisTitle("Light levels %");
         lightGraphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Light");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                DataPoint[] dp = new DataPoint[(int) snapshot.getChildrenCount()];
+
+                int sizeOfArray = (int) snapshot.getChildrenCount();
+                DataPoint[] dp = new DataPoint[sizeOfArray];
                 int index = 0;
 
+                //get all light values in an arraylist
                 for(DataSnapshot myDataSnapshot : snapshot.getChildren()) {
                     Light light = myDataSnapshot.getValue(Light.class);
-                    dp[index] = new DataPoint(light.getTime(), light.getValue());
-                    index++;
+                    lightArray.add(light);
 
-                    lightArrayList.add(index + ". Light Levels: " + light.getValue() + "%");
+                    //dp[index] = new DataPoint(light.getTime(), light.getValue());
+                    index++;
+                    lightArrayListString.add(index + ". Light Levels: " + light.getValue() + "%");
+                }
+
+                //bubblesort
+                for (int i = 0; i < lightArray.size()-1; i++) {
+                    for (int j = 0; j < lightArray.size()-i-1; j++) {
+                        if (lightArray.get(j).getTime() > lightArray.get(j+1).getTime()) {
+                            Light tempLight = lightArray.get(j);
+                            lightArray.set(j, lightArray.get(j+1));
+                            lightArray.set(j+1, tempLight);
+                        }
+                    }
+                }
+
+                //put data from arraylist in datapoints
+                for (int k = 0; k < sizeOfArray; k++) {
+                    dp[k] = new DataPoint(lightArray.get(k).getTime(), lightArray.get(k).getValue());
                 }
                 series.resetData(dp);
 
+                //log data
                 ArrayAdapter lightArrayAdapter = new ArrayAdapter(PlantLightDetailsActivity.this,
-                        android.R.layout.simple_list_item_1, lightArrayList);
+                        android.R.layout.simple_list_item_1, lightArrayListString);
                 lightListView.setAdapter(lightArrayAdapter);
             }
 
