@@ -1,19 +1,21 @@
 # ELEC/COEN 390 Engineering Team Design Project
 
+**HealthyLeaves** is consumer electronics device used to monitor the vitals of any plant. Using a combination of powerful hardware and software, HealthyLeaves garantees healthier and longer lasting house plants.
+
 ## Contributors
-Daniel Savin  
-Jun Young David Kim  
-Karl Noory  
-Thomas Tran  
-Vily Badea  
+Daniel Savin (ELEC)  
+Jun Young David Kim (ELEC)  
+Karl Noory (ELEC)  
+Thomas Tran (COEN)  
+Vily Badea (COEN)  
 
 ## Supervision
 Bipin Patel  
-Wahab Hamou Lhadj  
+Dr. Wahab Hamou Lhadj  
 
 ## Technology Stack
 Android Studio IDE  
-Arduino C/C++
+Arduino C/C++  
 Arduino IDE  
 ESP32 Microcontroller  
 Firebase  
