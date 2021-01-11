@@ -24,6 +24,7 @@ Java
 KiCAD  
 LDR Light Sensor  
 SEN0193 Capcitive Moisture Sensor  
+TensorFlow  
 TMP36 Temperature Sensor  
 
 ## App Installation Guide
