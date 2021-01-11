@@ -1,6 +1,6 @@
 # ELEC/COEN 390 Engineering Team Design Project
 
-**HealthyLeaves** is consumer electronics device used to monitor the vitals of any plant. Using a combination of powerful hardware and software, HealthyLeaves garantees healthier and longer lasting house plants.
+**HealthyLeaves** is consumer electronics device used to monitor the vitals of any plant. Using a combination of powerful hardware and software, HealthyLeaves guarantees healthier and longer lasting house plants.
 
 ## Contributors
 Daniel Savin (ELEC)  
